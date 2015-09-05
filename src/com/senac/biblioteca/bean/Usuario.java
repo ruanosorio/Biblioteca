@@ -1,4 +1,7 @@
-package com.senac.biblioteca.osorio.ruan;
+package com.senac.biblioteca.bean;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Classe para objetos do tipo Usuário
@@ -11,14 +14,15 @@ public class Usuario {
     private int matricula;
     private String nome;
     private Telefone telefone;
+    private List<Emprestimo> emprestimoItems = new ArrayList<>();
+    //private List<Emprestimo> emprestimoItems = new ArrayList<Emprestimo>();
 
     /**
      * **************************CONSTRUTORES****************************
      */
-    
     public Usuario() {
     }
-    
+
     /**
      * Método constutor da classe Usuário
      *
@@ -31,7 +35,6 @@ public class Usuario {
         this.nome = nome;
         this.telefone = telefone;
     }
-    
 
     /**
      * **************************GETS e SETS****************************
@@ -42,7 +45,7 @@ public class Usuario {
      * @return int - matricula.
      */
     public int getMatricula() {
-        return matricula;
+        return this.matricula;
     }
 
     /**
@@ -60,7 +63,7 @@ public class Usuario {
      * @return String - nome.
      */
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     /**
@@ -75,19 +78,45 @@ public class Usuario {
     /**
      * Método para retornar o telefone do Usuário.
      *
-     * @return Telefone - telefone.
+     * @return Telefone - this.telefone.
      */
     public Telefone getTelefone() {
-        return telefone;
+        return this.telefone;
     }
 
     /**
      * Método para atribuir um telefone ao Usuário.
      *
-     * @param telefone Telefone - Telefone do Usuário.
+     * @param p_telefone Telefone - Telefone do Usuário.
      */
-    public void setTelefone(Telefone telefone) {
-        this.telefone = telefone;
+    public void setTelefone(Telefone p_telefone) {
+        this.telefone = p_telefone;
     }
 
+    public List<Emprestimo> getEmprestimosItems() {
+        return this.emprestimoItems;
+    }
+
+    public void setEmprestimoItems(List<Emprestimo> p_emprestimoItems) {
+        this.emprestimoItems = p_emprestimoItems;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuffer = new StringBuilder();
+        stringBuffer.append("Matricula: ");
+        stringBuffer.append(this.matricula);
+        stringBuffer.append(" Nome: ");
+        stringBuffer.append(this.nome);
+        stringBuffer.append(" Telefone: ");
+        stringBuffer.append(this.telefone);       
+        
+        // pensar como implementar a estrutura adequada do emprestimo dos livros
+        
+//        StringBuffer.append("EmprestimoItems: ");
+//        stringBuffer.append(this.emprestimoItems);
+
+        return stringBuffer.toString();
+    }
+    
 }

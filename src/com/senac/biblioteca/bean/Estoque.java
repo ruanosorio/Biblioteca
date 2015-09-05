@@ -1,4 +1,4 @@
-package com.senac.biblioteca.osorio.ruan;
+package com.senac.biblioteca.bean;
 
 /**
  * Classe para objetos do tipo Estoque
@@ -22,12 +22,12 @@ public class Estoque {
     /**
      * Método constutor da classe Estoque.
      *
-     * @param quantidade Quantidade no Estoque.
-     * @param livro Livro disponivel no Estoque.
+     * @param p_quantidade Quantidade no Estoque.
+     * @param p_livro Livro disponivel no Estoque.
      */
-    public Estoque(int quantidade, Livro livro) {
-        this.quantidade = quantidade;
-        this.livro = livro;
+    public Estoque(int p_quantidade, Livro p_livro) {
+        this.quantidade = p_quantidade;
+        this.livro = p_livro;
     }
 
     /**
@@ -39,16 +39,16 @@ public class Estoque {
      * @return int - quantidade.
      */
     public int getQuantidade() {
-        return quantidade;
+        return this.quantidade;
     }
 
     /**
      * Método para atribuir a quantidade do livro no Estoque.
      *
-     * @param quantidade int - quantidade no Estoque.
+     * @param p_quantidade int - quantidade no Estoque.
      */
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setQuantidade(int p_quantidade) {
+        this.quantidade = p_quantidade;
     }
 
     /**
@@ -57,16 +57,22 @@ public class Estoque {
      * @return livro - Livro.
      */
     public Livro getLivro() {
-        return livro;
+        return this.livro;
     }
 
     /**
      * Método para atribuir um Livro ao Estoque.
      *
-     * @param livro Livro - Livro ao Estoque.
+     * @param p_livro Livro - Livro ao Estoque.
      */
-    public void setLivro(Livro livro) {
-        this.livro = livro;
+    public void setLivro(Livro p_livro) {
+        this.livro = p_livro;
     }
 
+    @Override
+    public String toString() {
+        return "Estoque{" + "quantidade=" + quantidade + ", livro=" + livro + '}';
+    }
+
+    
 }

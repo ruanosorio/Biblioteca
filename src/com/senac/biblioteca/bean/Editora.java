@@ -1,4 +1,4 @@
-package com.senac.biblioteca.osorio.ruan;
+package com.senac.biblioteca.bean;
 
 /**
  * Classe para objetos do tipo Editora
@@ -21,10 +21,10 @@ public class Editora {
     /**
      * Método constutor da classe Editora.
      *
-     * @param nome Nome da Editora.
+     * @param p_nome Nome da Editora.
      */
-    public Editora(String nome) {
-        this.nome = nome;
+    public Editora(String p_nome) {
+        this.nome = p_nome;
     }
 
     /**
@@ -36,16 +36,21 @@ public class Editora {
      * @return String - nome.
      */
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
     /**
      * Método para atribuir um nome a Editora.
      *
-     * @param nome String - nome da Editora.
+     * @param p_nome String - nome da Editora.
      */
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String p_nome) {
+        this.nome = p_nome;
     }
 
-}
+    @Override
+    public String toString() {
+        return "Editora{" + "nome=" + nome + '}';
+    }
+
+ }

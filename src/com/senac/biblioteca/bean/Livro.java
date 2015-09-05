@@ -1,4 +1,4 @@
-package com.senac.biblioteca.osorio.ruan;
+package com.senac.biblioteca.bean;
 
 /**
  * Classe para objetos do tipo Livro
@@ -14,6 +14,7 @@ public class Livro {
     private int ano;
     private Editora editora;
     private String descricao;
+    private Categoria categoria;
 
     /**
      * **************************CONSTRUTORES****************************
@@ -25,22 +26,24 @@ public class Livro {
     /**
      * Método constutor da classe Livro
      *
-     * @param titulo Título do Livro.
-     * @param autor Autor do Livro.
-     * @param isbn Código ISBN do Livro.
-     * @param ano Ano de publicação do Livro.
-     * @param editora Editora do Livro.
-     * @param descricao Descrição do Livro.
+     * @param p_titulo Título do Livro.
+     * @param p_autor Autor do Livro.
+     * @param p_isbn Código ISBN do Livro.
+     * @param p_ano Ano de publicação do Livro.
+     * @param p_editora Editora do Livro.
+     * @param p_descricao Descrição do Livro.
+     * @param p_categoria Categoria do Livro
      */
-    public Livro(String titulo, String autor, String isbn, int ano, Editora editora, String descricao) {
-        this.titulo = titulo;
-        this.autor = autor;
-        this.ISBN = isbn;
-        this.ano = ano;
-        this.editora = editora;
-        this.descricao = descricao;
+    public Livro(String p_titulo, String p_autor, String p_isbn, int p_ano, Editora p_editora, String p_descricao, Categoria p_categoria) {
+        this.titulo = p_titulo;
+        this.autor = p_autor;
+        this.ISBN = p_isbn;
+        this.ano = p_ano;
+        this.editora = p_editora;
+        this.descricao = p_descricao;
+        this.categoria = p_categoria;
     }
-
+    
     /**
      * **************************GETS e SETS****************************
      */
@@ -50,16 +53,16 @@ public class Livro {
      * @return String - titulo.
      */
     public String getTitulo() {
-        return titulo;
+        return this.titulo;
     }
 
     /**
      * Método para atribuir um título ao Livro.
      *
-     * @param titulo String com o titulo do Livro.
+     * @param p_titulo String com o titulo do Livro.
      */
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTitulo(String p_titulo) {
+        this.titulo = p_titulo;
     }
 
     /**
@@ -68,16 +71,16 @@ public class Livro {
      * @return String - autor.
      */
     public String getAutor() {
-        return autor;
+        return this.autor;
     }
 
     /**
      * Método para atribuir um autor ao Livro.
      *
-     * @param autor String com o autor do Livro.
+     * @param p_autor String com o autor do Livro.
      */
-    public void setAutor(String autor) {
-        this.autor = autor;
+    public void setAutor(String p_autor) {
+        this.autor = p_autor;
     }
 
     /**
@@ -85,17 +88,17 @@ public class Livro {
      *
      * @return isbn String com o codigo ISBN do Livro.
      */
-    public String getIsbn() {
-        return ISBN;
+    public String getISBN() {
+        return this.ISBN;
     }
 
     /**
      * Método para atribuir um código ISBN ao Livro.
      *
-     * @param isbn String com o código ISBN do Livro.
+     * @param p_isbn String com o código ISBN do Livro.
      */
-    public void setIsbn(String isbn) {
-        this.ISBN = isbn;
+    public void setISBN(String p_isbn) {
+        this.ISBN = p_isbn;
     }
 
     /**
@@ -104,16 +107,16 @@ public class Livro {
      * @return int - ano.
      */
     public int getAno() {
-        return ano;
+        return this.ano;
     }
 
     /**
      * Método para atribuir um ano de publicação ao Livro.
      *
-     * @param ano int com o ano de publicação do Livro.
+     * @param p_ano int com o ano de publicação do Livro.
      */
-    public void setAno(int ano) {
-        this.ano = ano;
+    public void setAno(int p_ano) {
+        this.ano = p_ano;
     }
 
     /**
@@ -122,13 +125,13 @@ public class Livro {
      * @return editora do livro do tipo Class Editora.
      */
     public Editora getEditora() {
-        return editora;
+        return this.editora;
     }
 
     /**
      * Método para atribuir uma editora ao Livro.
      *
-     * @return editora do livro do tipo Class Editora.
+     * @param editora do livro do tipo Class Editora.
      */
     public void setEditora(Editora editora) {
         this.editora = editora;
@@ -140,7 +143,7 @@ public class Livro {
      * @return String - descricacao.
      */
     public String getDescricao() {
-        return descricao;
+        return this.descricao;
     }
 
     /**
@@ -152,4 +155,19 @@ public class Livro {
         this.descricao = descricao;
     }
 
+    public Categoria getCategoria() {
+        return this.categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    @Override
+    public String toString() {
+        return "Livro{" + "titulo=" + titulo + ", autor=" + autor + ", ISBN=" + ISBN + ", ano=" + ano + ", editora=" + editora + ", descricao=" + descricao + ", categoria=" + categoria + '}';
+    }
+    
+    
+    
 }

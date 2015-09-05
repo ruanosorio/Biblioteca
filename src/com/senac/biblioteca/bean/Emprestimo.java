@@ -1,4 +1,4 @@
-package com.senac.biblioteca.osorio.ruan;
+package com.senac.biblioteca.bean;
 
 import java.util.Date;
 
@@ -23,12 +23,12 @@ public class Emprestimo {
     /**
      * Método constutor da classe Emprestimo.
      *
-     * @param dtEmprestimo Data do Emprestimo do Livro.
-     * @param dtDevolucao Data de Devolucao Emprestimo do Livro.
+     * @param p_dtEmprestimo Data do Emprestimo do Livro.
+     * @param p_dtDevolucao Data de Devolucao Emprestimo do Livro.
      */
-    public Emprestimo(Date dtEmprestimo, Date dtDevolucao) {
+    public Emprestimo(Date p_dtEmprestimo, Date p_dtDevolucao) {
         this.dtEmprestimo = dtEmprestimo;
-        this.dtDevolucao = dtDevolucao;
+        this.dtDevolucao = p_dtDevolucao;
     }
 
     /**
@@ -40,16 +40,16 @@ public class Emprestimo {
      * @return Date - DtEmprestimo.
      */
     public Date getDtEmprestimo() {
-        return dtEmprestimo;
+        return this.dtEmprestimo;
     }
 
     /**
      * Método para atribuir uma data de Emprestimo.
      *
-     * @param dtEmprestimo Date - data do Emprestimo.
+     * @param p_dtEmprestimo Date - data do Emprestimo.
      */
-    public void setDtEmprestimo(Date dtEmprestimo) {
-        this.dtEmprestimo = dtEmprestimo;
+    public void setDtEmprestimo(Date p_dtEmprestimo) {
+        this.dtEmprestimo = p_dtEmprestimo;
     }
 
     /**
@@ -58,16 +58,22 @@ public class Emprestimo {
      * @return Date - dtDevolucao.
      */
     public Date getDtDevoluco() {
-        return dtDevolucao;
+        return this.dtDevolucao;
     }
 
     /**
      * Método para atribuir uma data de devolucao do Emprestimo.
      *
-     * @param dtDevolucao Date - data de devolucao do Emprestimo.
+     * @param p_dtDevolucao Date - data de devolucao do Emprestimo.
      */
-    public void setDtDevolucao(Date dtDevolucao) {
-        this.dtDevolucao = dtDevolucao;
+    public void setDtDevolucao(Date p_dtDevolucao) {
+        this.dtDevolucao = p_dtDevolucao;
     }
 
+    @Override
+    public String toString() {
+        return "Emprestimo{" + "dtEmprestimo=" + dtEmprestimo + ", dtDevolucao=" + dtDevolucao + '}';
+    }
+
+     
 }
