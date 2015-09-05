@@ -76,6 +76,7 @@ public class Teste {
             }
         } while (opcao != 0);
         sc.close();
+        
     }
 
 }
