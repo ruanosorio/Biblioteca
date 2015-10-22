@@ -1,5 +1,7 @@
 package com.senac.biblioteca.bean;
 
+import java.util.Objects;
+
 /**
  * Classe para objetos do tipo Livro
  *
@@ -7,14 +9,15 @@ package com.senac.biblioteca.bean;
  * @version 1
  */
 public class Livro {
-
+    
+    private int id;
     private String titulo;
     private String autor;
     private String ISBN;
     private int ano;
-    private Editora editora;
+    private Editora editora = new Editora();
     private String descricao;
-    private Categoria categoria;
+    private Categoria categoria = new Categoria();
 
     /**
      * **************************CONSTRUTORES****************************
@@ -163,7 +166,56 @@ public class Livro {
         this.categoria = categoria;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Livro other = (Livro) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.titulo, other.titulo)) {
+            return false;
+        }
+        if (!Objects.equals(this.autor, other.autor)) {
+            return false;
+        }
+        if (!Objects.equals(this.ISBN, other.ISBN)) {
+            return false;
+        }
+        if (this.ano != other.ano) {
+            return false;
+        }
+        if (!Objects.equals(this.editora, other.editora)) {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.categoria, other.categoria)) {
+            return false;
+        }
+        return true;
+    }
     public String toString() {
         return "Livro{" + "titulo=" + titulo + ", autor=" + autor + ", ISBN=" + ISBN + ", ano=" + ano + ", editora=" + editora + ", descricao=" + descricao + ", categoria=" + categoria + '}';
     }

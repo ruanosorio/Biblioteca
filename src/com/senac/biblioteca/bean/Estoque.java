@@ -1,5 +1,7 @@
 package com.senac.biblioteca.bean;
 
+import java.util.Objects;
+
 /**
  * Classe para objetos do tipo Estoque
  *
@@ -7,7 +9,8 @@ package com.senac.biblioteca.bean;
  * @version 1
  */
 public class Estoque {
-
+    
+    private int id;
     private int quantidade;
     private Livro livro;
 
@@ -67,6 +70,42 @@ public class Estoque {
      */
     public void setLivro(Livro p_livro) {
         this.livro = p_livro;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Estoque other = (Estoque) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.quantidade != other.quantidade) {
+            return false;
+        }
+        if (!Objects.equals(this.livro, other.livro)) {
+            return false;
+        }
+        return true;
     }
 
     @Override

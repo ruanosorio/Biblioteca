@@ -2,6 +2,7 @@ package com.senac.biblioteca.bean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Classe para objetos do tipo Usuário
@@ -10,10 +11,11 @@ import java.util.List;
  * @version 1
  */
 public class Usuario {
-
+    
+    private int id;
     private int matricula;
     private String nome;
-    private Telefone telefone;
+    private String telefone;
     private List<Emprestimo> emprestimoItems = new ArrayList<>();
     //private List<Emprestimo> emprestimoItems = new ArrayList<Emprestimo>();
 
@@ -30,7 +32,7 @@ public class Usuario {
      * @param nome Nome do Usuário.
      * @param telefone Telefone do Usuário.
      */
-    public Usuario(int matricula, String nome, Telefone telefone) {
+    public Usuario(int matricula, String nome, String telefone) {
         this.matricula = matricula;
         this.nome = nome;
         this.telefone = telefone;
@@ -78,18 +80,18 @@ public class Usuario {
     /**
      * Método para retornar o telefone do Usuário.
      *
-     * @return Telefone - this.telefone.
+     * @return String - this.telefone.
      */
-    public Telefone getTelefone() {
+    public String getTelefone() {
         return this.telefone;
     }
 
     /**
      * Método para atribuir um telefone ao Usuário.
      *
-     * @param p_telefone Telefone - Telefone do Usuário.
+     * @param p_telefone String - Telefone do Usuário.
      */
-    public void setTelefone(Telefone p_telefone) {
+    public void setTelefone(String p_telefone) {
         this.telefone = p_telefone;
     }
 
@@ -101,6 +103,49 @@ public class Usuario {
         this.emprestimoItems = p_emprestimoItems;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + this.id;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (this.matricula != other.matricula) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        if (!Objects.equals(this.emprestimoItems, other.emprestimoItems)) {
+            return false;
+        }
+        return true;
+    }
+       
+    
     @Override
     public String toString() {
         StringBuilder stringBuffer = new StringBuilder();
