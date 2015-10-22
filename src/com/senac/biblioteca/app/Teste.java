@@ -5,29 +5,38 @@ import com.senac.biblioteca.bd.LivroBD;
 import com.senac.biblioteca.bd.UsuarioBD;
 import com.senac.biblioteca.bean.Emprestimo;
 import com.senac.biblioteca.bean.Livro;
-import com.senac.biblioteca.bean.Telefone;
 import com.senac.biblioteca.bean.Usuario;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+import org.apache.log4j.chainsaw.Main;
 
 /**
- * Classe Teste realizar o fluxo do projeto. 
- * 
+ * Classe Teste realizar o fluxo do projeto.
+ *
  * Realizar o fluxo basico de cadastro
  *
  * @author Ruan Osório
- * @version 1  
+ * @version 1
  */
 public class Teste {
 
-public static void main(String[] args) {
-    Emprestimo emprestimo = new Emprestimo();
-    emprestimo.setId(1);
-    new EmprestimoBD().devolucao(emprestimo);
-}
-    public static void mains(String[] args) {
+    public static void main(String[] args) throws Exception{
+        Usuario u = new Usuario();
+        u.setId(9);
         
+        List<Emprestimo> emps = new EmprestimoBD().listaEmprestimoDoUsuario(u);
+        for (Emprestimo emp : emps) {
+            System.out.println(emp);
+        }
+    }
+
+    public static void devolucao(String[] args) {
+        Emprestimo emprestimo = new Emprestimo();
+        emprestimo.setId(1);
+        new EmprestimoBD().devolucao(emprestimo);
+    }
+
+    public static void mains(String[] args) {
+
         UsuarioBD user = new UsuarioBD();
 
         Usuario p_user = new Usuario();
@@ -37,25 +46,24 @@ public static void main(String[] args) {
         p_user.setTelefone("9875464");
 
         user.salvar(p_user);
-        
+
         LivroBD livrobanco = new LivroBD();
-        
+
         Livro p_book = new Livro();
-        
+
         p_book.setTitulo("Use a cabeça JAVA");
         p_book.setAutor("Seu Java");
         p_book.setISBN("121451545");
         p_book.setAno(2015);
         p_book.setDescricao("Como aprender a linguem de programação JAVA");
-        
+
         livrobanco.salvar(p_book);
-        
-        
+
         Emprestimo emprestimo = new Emprestimo(p_user, p_book);
         emprestimo.setIndDevolvido("N");
         new EmprestimoBD().salvar(emprestimo);
-        System.out.println("Emprestimo efetuado = "+emprestimo.toString());
-        
+        System.out.println("Emprestimo efetuado = " + emprestimo.toString());
+
     }
 //
 //    public static void dadosUsuarios() {
@@ -117,4 +125,3 @@ public static void main(String[] args) {
 //    }
 
 }
-
