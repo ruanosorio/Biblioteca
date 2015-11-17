@@ -1,7 +1,7 @@
 package com.senac.biblioteca.rn;
 
 import com.senac.biblioteca.bd.UsuarioBD;
-import com.senac.biblioteca.bean.GeraId;
+import com.senac.biblioteca.old.GeraId;
 import com.senac.biblioteca.bean.Usuario;
 import com.senac.biblioteca.rnval.UsuarioRNVAL;
 import java.util.ArrayList;

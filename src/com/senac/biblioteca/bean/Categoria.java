@@ -7,7 +7,6 @@ import java.util.Objects;
  *
  * @author Ruan Osório
  * @version 1
- * 
  */
 public class Categoria {
     

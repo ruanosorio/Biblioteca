@@ -5,6 +5,9 @@
  */
 package com.senac.biblioteca.swing;
 
+import static java.awt.image.ImageObserver.WIDTH;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ruans
@@ -27,114 +30,165 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
+        desktopPanePrincipal = new javax.swing.JDesktopPane();
+        jMenuBarPrincipal = new javax.swing.JMenuBar();
+        menuArquivo = new javax.swing.JMenu();
+        itemMenuImprimir = new javax.swing.JMenuItem();
+        itemMenuSair = new javax.swing.JMenuItem();
+        menuUsuarios = new javax.swing.JMenu();
+        itemMenuCadastrarUsuario = new javax.swing.JMenuItem();
+        itemMenuGerenciarUsuarios = new javax.swing.JMenuItem();
+        menuLivros = new javax.swing.JMenu();
+        itemMenuCadastrarLivros = new javax.swing.JMenuItem();
+        itemMenuGerenciarLivros = new javax.swing.JMenuItem();
+        menuEmprestimo = new javax.swing.JMenu();
+        itemMenuNovoEmprestimo = new javax.swing.JMenuItem();
+        itemMenuDevolucaoEmprestimo = new javax.swing.JMenuItem();
+        itemMenuEmprestimos = new javax.swing.JMenuItem();
+        menuAjuda = new javax.swing.JMenu();
+        itemMenuSobre = new javax.swing.JMenuItem();
+        menuSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema Biblioteca ROS");
+        setLocation(new java.awt.Point(0, 0));
 
-        jDesktopPane1.setBackground(new java.awt.Color(204, 204, 204));
-        jDesktopPane1.setForeground(new java.awt.Color(204, 204, 204));
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(760, 460));
+        desktopPanePrincipal.setBackground(new java.awt.Color(204, 204, 204));
+        desktopPanePrincipal.setForeground(new java.awt.Color(204, 204, 204));
+        desktopPanePrincipal.setPreferredSize(new java.awt.Dimension(760, 550));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
-        );
+        menuArquivo.setText("Arquivo");
 
-        jMenu1.setText("Arquivo");
+        itemMenuImprimir.setText("Imprimir");
+        menuArquivo.add(itemMenuImprimir);
 
-        jMenuItem1.setText("Imprimir");
-        jMenu1.add(jMenuItem1);
+        itemMenuSair.setText("Sair");
+        itemMenuSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemMenuSairMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                itemMenuSairMouseExited(evt);
+            }
+        });
+        itemMenuSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuSairActionPerformed(evt);
+            }
+        });
+        menuArquivo.add(itemMenuSair);
 
-        jMenuItem3.setText("Sair");
-        jMenu1.add(jMenuItem3);
+        jMenuBarPrincipal.add(menuArquivo);
 
-        jMenuBar1.add(jMenu1);
+        menuUsuarios.setText("Gerenciar Usuários");
 
-        jMenu2.setText("Gerenciar Usuários");
+        itemMenuCadastrarUsuario.setText("Cadastrar Usuário");
+        itemMenuCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuCadastrarUsuarioActionPerformed(evt);
+            }
+        });
+        menuUsuarios.add(itemMenuCadastrarUsuario);
 
-        jMenuItem2.setText("Cadastrar Usuários");
-        jMenu2.add(jMenuItem2);
+        itemMenuGerenciarUsuarios.setText("Gerenciar Usuários");
+        menuUsuarios.add(itemMenuGerenciarUsuarios);
 
-        jMenuItem4.setText("Gerenciar Usuários");
-        jMenu2.add(jMenuItem4);
+        jMenuBarPrincipal.add(menuUsuarios);
 
-        jMenuBar1.add(jMenu2);
+        menuLivros.setText("Gerenciars Livros");
 
-        jMenu6.setText("Gerenciars Livros");
+        itemMenuCadastrarLivros.setText("Cadastrar Livro");
+        menuLivros.add(itemMenuCadastrarLivros);
 
-        jMenuItem5.setText("Cadastrar Livros");
-        jMenu6.add(jMenuItem5);
+        itemMenuGerenciarLivros.setText("Gerenciar Livros");
+        menuLivros.add(itemMenuGerenciarLivros);
 
-        jMenuItem6.setText("Gerenciar Livros");
-        jMenu6.add(jMenuItem6);
+        jMenuBarPrincipal.add(menuLivros);
 
-        jMenuBar1.add(jMenu6);
+        menuEmprestimo.setText("Empréstimos");
 
-        jMenu3.setText("Empréstimos");
+        itemMenuNovoEmprestimo.setText("Novo Empréstimo");
+        menuEmprestimo.add(itemMenuNovoEmprestimo);
 
-        jMenuItem7.setText("Novo Empréstimo");
-        jMenu3.add(jMenuItem7);
+        itemMenuDevolucaoEmprestimo.setText("Devolução ");
+        menuEmprestimo.add(itemMenuDevolucaoEmprestimo);
 
-        jMenuItem8.setText("Devolução ");
-        jMenu3.add(jMenuItem8);
+        itemMenuEmprestimos.setText("Empréstimos");
+        menuEmprestimo.add(itemMenuEmprestimos);
 
-        jMenuItem9.setText("Empréstimos");
-        jMenu3.add(jMenuItem9);
+        jMenuBarPrincipal.add(menuEmprestimo);
 
-        jMenuBar1.add(jMenu3);
+        menuAjuda.setText("Ajuda");
 
-        jMenu4.setText("Ajuda");
+        itemMenuSobre.setText("Sobre");
+        itemMenuSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuSobreActionPerformed(evt);
+            }
+        });
+        menuAjuda.add(itemMenuSobre);
 
-        jMenuItem10.setText("Sobre");
-        jMenu4.add(jMenuItem10);
+        jMenuBarPrincipal.add(menuAjuda);
 
-        jMenuBar1.add(jMenu4);
+        menuSair.setText("Sair");
+        menuSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuSairMouseClicked(evt);
+            }
+        });
+        jMenuBarPrincipal.add(menuSair);
 
-        jMenu5.setText("Sair");
-        jMenuBar1.add(jMenu5);
-
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBarPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(desktopPanePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(desktopPanePrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
+        //Ao clicar no botão, dispara o evento de sair da aplicação.           
+         System.exit(0);
+    }//GEN-LAST:event_menuSairMouseClicked
+
+    private void itemMenuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemMenuSairMouseClicked
+     
+    }//GEN-LAST:event_itemMenuSairMouseClicked
+
+    private void itemMenuSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemMenuSairMouseExited
+        
+    }//GEN-LAST:event_itemMenuSairMouseExited
+
+    private void itemMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuSairActionPerformed
+        // Usuário clica em YES para finalizar a aplicação:
+       if(JOptionPane.showConfirmDialog(this, "Deseja realmente sair?", "Sair - Sistema Biblioteca ROS", WIDTH, 3) == 0){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_itemMenuSairActionPerformed
+
+    private void itemMenuSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuSobreActionPerformed
+        // TODO add your handling code here:
+        Sobre sobre = new Sobre();
+        sobre.setVisible(true);
+    }//GEN-LAST:event_itemMenuSobreActionPerformed
+
+    private void itemMenuCadastrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuCadastrarUsuarioActionPerformed
+        // TODO add your handling code here:
+        CadastrarUsuario cadastrar = new CadastrarUsuario();
+        desktopPanePrincipal.add(cadastrar);
+        cadastrar.setVisible(true);
+    }//GEN-LAST:event_itemMenuCadastrarUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,23 +226,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JDesktopPane desktopPanePrincipal;
+    private javax.swing.JMenuItem itemMenuCadastrarLivros;
+    private javax.swing.JMenuItem itemMenuCadastrarUsuario;
+    private javax.swing.JMenuItem itemMenuDevolucaoEmprestimo;
+    private javax.swing.JMenuItem itemMenuEmprestimos;
+    private javax.swing.JMenuItem itemMenuGerenciarLivros;
+    private javax.swing.JMenuItem itemMenuGerenciarUsuarios;
+    private javax.swing.JMenuItem itemMenuImprimir;
+    private javax.swing.JMenuItem itemMenuNovoEmprestimo;
+    private javax.swing.JMenuItem itemMenuSair;
+    private javax.swing.JMenuItem itemMenuSobre;
+    private javax.swing.JMenuBar jMenuBarPrincipal;
+    private javax.swing.JMenu menuAjuda;
+    private javax.swing.JMenu menuArquivo;
+    private javax.swing.JMenu menuEmprestimo;
+    private javax.swing.JMenu menuLivros;
+    private javax.swing.JMenu menuSair;
+    private javax.swing.JMenu menuUsuarios;
     // End of variables declaration//GEN-END:variables
 }
