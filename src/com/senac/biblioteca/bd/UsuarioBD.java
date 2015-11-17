@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
 
@@ -35,7 +36,7 @@ public class UsuarioBD {
             pstm.setString(2, p_usuario.getNome());
             pstm.setString(3, p_usuario.getTelefone());
 
-            log.info("Inserindo usuário no banco de dados");
+            log.info("Inserindo Usuário no banco de dados");
 
             pstm.executeUpdate();
             Long id = ConexaoBD.getLastKey(pstm);
@@ -47,7 +48,9 @@ public class UsuarioBD {
 //                Long id = rs.getLong(1);
 //                p_usuario.setId(id.intValue());
 //            }
-            log.info("ID criado = "+p_usuario.getId());
+        
+            log.info("Usuário criado, seu ID = "+p_usuario.getId());
+            
         } catch (Exception e) {
             log.error("Erro ao tentar inserir usuário");
             throw new RuntimeException(e);
@@ -61,7 +64,80 @@ public class UsuarioBD {
         }
     }
 
-    public void excluir(Usuario p_usuario) {
+    public void editar(Usuario p_usuario) {
+                
+        Connection conn = null;
+        try {
+            
+            log.info("Abrindo conexão com o banco");
+            
+            conn = ConexaoBD.getConexao();
+            PreparedStatement pstm = conn.prepareStatement(""
+                    + "update usuario set "
+                     + "matricula = ? ,"
+                    + "nome = ? ,"
+                    + "telefone = ? ,"                  
+                    + "where id = ?");
+            
+            pstm.setInt(1,p_usuario.getMatricula());
+            pstm.setString(2,p_usuario.getNome());
+            pstm.setString(3,p_usuario.getTelefone());          
+            pstm.setInt(4, p_usuario.getId());
+            
+            log.info("Usuario editado!");
+
+            pstm.executeUpdate();
+
+            
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                }
+            }
+        }
+                
+    }
+   
+    public List<Usuario> listaUsuario() {
+       List<Usuario> lista = new ArrayList<>();
+
+        Connection conn = null;
+        try {
+
+            conn = ConexaoBD.getConexao();
+
+            PreparedStatement pstm = conn.prepareStatement("SELECT * FROM usuario");
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()) {
+
+                Usuario usuarios = new Usuario();
+              
+                usuarios.setId(rs.getInt("id"));
+                usuarios.setMatricula(rs.getInt("matricula"));
+                usuarios.setNome(rs.getString("nome"));
+                usuarios.setTelefone(rs.getString("telefone"));
+
+                lista.add(usuarios);
+
+            }
+
+            return lista;
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+            }
+        }
+    }
+
+     public void excluir(Usuario p_usuario) {
         Connection conn = null;
         try {
 
@@ -82,14 +158,5 @@ public class UsuarioBD {
             }
         }
     }
-
-    public void editar(Usuario p_usuario) {
-        throw new UnsupportedOperationException("Not supported yet.");
-        
-    }
-
-    public List<Usuario> listaUsuario(Usuario p_usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
 }

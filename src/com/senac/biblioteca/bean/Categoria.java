@@ -11,21 +11,21 @@ import java.util.Objects;
 public class Categoria {
     
     private int id;
-    private String descricao;
+    private String nome;
 
     public Categoria() {
     }
 
-    public Categoria(String p_descricao) {
-        this.descricao = p_descricao;
+    public Categoria(String p_nome) {
+        this.nome = p_nome;
     }
             
-    public String getDescricao() {
-        return this.descricao;
+    public String getNome() {
+        return this.nome;
     }
 
-    public void setDescricao(String p_descricao) {
-        this.descricao = p_descricao;
+    public void setNome(String p_nome) {
+        this.nome = p_nome;
     }
 
     public int getId() {
@@ -55,7 +55,7 @@ public class Categoria {
         if (this.id != other.id) {
             return false;
         }
-        if (!Objects.equals(this.descricao, other.descricao)) {
+        if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         return true;
@@ -65,7 +65,7 @@ public class Categoria {
     
     @Override
     public String toString() {
-        return "Categoria{" + "descricao=" + descricao + '}';
+        return "Categoria{" + "descricao=" + nome + '}';
     }
 
         

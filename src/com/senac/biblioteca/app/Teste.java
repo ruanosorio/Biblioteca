@@ -6,6 +6,7 @@ import com.senac.biblioteca.bd.UsuarioBD;
 import com.senac.biblioteca.bean.Emprestimo;
 import com.senac.biblioteca.bean.Livro;
 import com.senac.biblioteca.bean.Usuario;
+import com.senac.biblioteca.rn.LivroRN;
 import java.util.List;
 import org.apache.log4j.chainsaw.Main;
 
@@ -19,14 +20,36 @@ import org.apache.log4j.chainsaw.Main;
  */
 public class Teste {
 
-    public static void main(String[] args) throws Exception{
-        Usuario u = new Usuario();
-        u.setId(10);
+    public static void mains(String[] args) throws Exception {
+
+//        Usuario u = new Usuario();
+//        
+//        u.setId(9);
+//        u.setId(10);
+//        List<Emprestimo> emps = new EmprestimoBD().listaEmprestimoDoUsuario(u);
+//        for (Emprestimo emp : emps) {
+//            System.out.println(emp);
+//
+//        }
+//        
+//        List<Livro> l = new LivroBD().listaLivro();
+//        for (Livro livros : l){
+//            System.out.println(livros);
+//        }
+//        
+//        List<Usuario> ul = new UsuarioBD().listaUsuario();
+//        for (Usuario usuarios : ul){
+//            System.out.println(usuarios);
+//        }
         
-        List<Emprestimo> emps = new EmprestimoBD().listaEmprestimoDoUsuario(u);
-        for (Emprestimo emp : emps) {
-            System.out.println(emp);
+        
+        /*
+         FabricaRN rn = new FabricaRN();
+        List<Fabrica> lista = rn.listar();
+        for (Fabrica fabrica : lista) {
+            System.out.println(fabrica.getNome());
         }
+        */
     }
 
     public static void devolucao(String[] args) {
@@ -35,15 +58,15 @@ public class Teste {
         new EmprestimoBD().devolucao(emprestimo);
     }
 
-    public static void mains(String[] args) {
+    public static void main(String[] args) {
 
         UsuarioBD user = new UsuarioBD();
 
         Usuario p_user = new Usuario();
 
-        p_user.setNome("Teste");
-        p_user.setMatricula(2015);
-        p_user.setTelefone("9875464");
+        p_user.setNome("Lossurdo");
+        p_user.setMatricula(20152);
+        p_user.setTelefone("56444");
 
         user.salvar(p_user);
 
@@ -51,11 +74,11 @@ public class Teste {
 
         Livro p_book = new Livro();
 
-        p_book.setTitulo("Use a cabeça JAVA");
-        p_book.setAutor("Seu Java");
+        p_book.setTitulo("Qualqwer");
+        p_book.setAutor("Seu ");
         p_book.setIsbn("121451545");
         p_book.setAno(2015);
-        p_book.setDescricao("Como aprender a linguem de programação JAVA");
+        p_book.setDescricao(" JAVA");
 
         livrobanco.salvar(p_book);
 
@@ -65,63 +88,5 @@ public class Teste {
         System.out.println("Emprestimo efetuado = " + emprestimo.toString());
 
     }
-//
-//    public static void dadosUsuarios() {
-//        
-//        Scanner sc= new Scanner(System.in);
-//        
-//        Telefone phone;
-//        
-//        Usuario user;
-//        
-//        List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-//        
-//        int opcao = 0;
-//        
-//        do {
-//            System.out.println("## Escolha uma das opções abaixo ##");
-//            System.out.println("Opção 1 - Cadastrar Usuário");
-//            System.out.println("Opção 2 - Listar Usuário(s) cadastrado(s)");
-//            System.out.println("Opção 3 - Cadastrar Livros");
-//            System.out.println("Opção 0 - Sair do programa");
-//            System.out.println("_______________________");
-//            System.out.print("Digite aqui sua opção: ");
-//           
-//            opcao = Integer.parseInt(sc.nextLine());
-//            
-//            if (opcao == 1) {
-//                //Cria um novo objeto do tipo Usuário
-//                user = new Usuario();
-//                
-//                    System.out.print("Digite a mátiricula: ");
-//                    user.setMatricula(Integer.parseInt(sc.nextLine()));
-//                    System.out.print("Digite o nome: ");
-//                    user.setNome(sc.nextLine());
-//                    
-//                    phone = new Telefone();
-//                    System.out.print("Digite o telefone: ");
-//                    phone.setNumero(Integer.parseInt(sc.nextLine()));
-//                    //user.setTelefone(phone);
-//                    
-//                    System.out.println();
-//                                       
-//                    
-//                //Guarda o objeto Usuário em uma lista.
-//                listaUsuarios.add(user);
-//                
-//            } else if (opcao == 2) {
-//                if (listaUsuarios.isEmpty()) {
-//                    System.out.println("Não existem pessoas cadastradas, pressione uma tecla para continuar!");
-//                    sc.nextLine();
-//                } else {
-//                    System.out.println(listaUsuarios.toString());
-//                    System.out.println("Pressione um tecla para continuar.");
-//                    sc.nextLine();
-//                }
-//            }
-//        } while (opcao != 0);
-//        sc.close();
-//        
-//    }
 
 }

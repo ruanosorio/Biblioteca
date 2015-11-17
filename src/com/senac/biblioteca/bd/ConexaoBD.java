@@ -23,7 +23,9 @@ public class ConexaoBD {
 
     public static Connection getConexao() {
         Connection conn = null;
+       // log.info("Iniciando a conexão com o banco de dados Biblioteca!");
         try {
+            
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/biblioteca", "root", "usbw");
             return conn;
@@ -35,6 +37,10 @@ public class ConexaoBD {
         }
     }
 
+    /**
+     * @param pmst - tipo PreparedStament 
+     * Metodo para retornar o id do objeto, após sua inserção no banco de dados
+    */
     public static Long getLastKey(PreparedStatement pmst) throws Exception {
         ResultSet rs = pmst.getGeneratedKeys();
 

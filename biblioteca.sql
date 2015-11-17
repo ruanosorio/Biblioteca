@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Máquina: localhost
--- Data de Criação: 21-Out-2015 às 23:47
+-- Data de Criação: 23-Out-2015 às 23:58
 -- Versão do servidor: 5.6.13
 -- versão do PHP: 5.4.17
 
@@ -30,7 +30,7 @@ USE `biblioteca`;
 
 CREATE TABLE IF NOT EXISTS `categoria` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(250) NOT NULL,
+  `nome` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `emprestimo` (
   `id_livro` int(11) DEFAULT NULL,
   `ind_devolvido` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Extraindo dados da tabela `emprestimo`
@@ -68,7 +68,11 @@ CREATE TABLE IF NOT EXISTS `emprestimo` (
 
 INSERT INTO `emprestimo` (`id`, `dataEmprestimo`, `dataDevolucao`, `id_usuario`, `id_livro`, `ind_devolvido`) VALUES
 (1, '2015-10-21 23:33:14', '2015-10-21 23:44:44', 9, 3, 'S'),
-(2, '2015-10-21 23:38:28', '2015-10-28 23:38:28', 10, 4, 'N');
+(2, '2015-10-21 23:38:28', '2015-10-28 23:38:28', 10, 4, 'N'),
+(3, '2015-10-15 03:00:00', '2015-10-22 02:00:00', 2, 1, 'N'),
+(4, '2015-10-23 02:00:00', '2015-10-30 02:00:00', 10, 3, 'N'),
+(5, '2015-10-20 02:00:00', '2015-10-21 02:00:00', 5, 2, 'S'),
+(6, '2015-10-23 02:00:00', '2015-10-30 02:00:00', 10, 1, 'N');
 
 -- --------------------------------------------------------
 
@@ -107,9 +111,9 @@ CREATE TABLE IF NOT EXISTS `livro` (
 
 INSERT INTO `livro` (`id`, `titulo`, `autor`, `isbn`, `ano`, `id_editora`, `id_categoria`, `descricao`) VALUES
 (1, 'INTELIGENCIA EMOCIONAL', 'DANIEL GOLEMAN', '56154545454', 2015, 1, 1, 'Daniel Goleman serve-nos de guia numa jornada através da visão científica das emoções de alguns dos mais confusos momentos das nossas próprias vidas e o mundo que nos rodeia. O fim da jornada é compreender o que significa trazer inteligência à emoção'),
-(2, 'Use a cabeça JAVA', 'Seu Java', '121451545', 2015, 0, 0, 'Como aprender a linguem de programação JAVA'),
-(3, 'Use a cabeça JAVA', 'Seu Java', '121451545', 2015, 0, 0, 'Como aprender a linguem de programação JAVA'),
-(4, 'Use a cabeça JAVA', 'Seu Java', '121451545', 2015, 0, 0, 'Como aprender a linguem de programação JAVA');
+(2, 'Use a cabeça JAVA 2013', 'Seu Java', '121451545', 2013, 0, 0, 'Como aprender a linguagem de programação JAVA'),
+(3, 'Use a cabeça JAVA 2010', 'Seu Java', '20154520', 2010, 0, 0, 'Como aprender a linguagem de programação JAVA '),
+(4, 'Aprenda PHP 5', 'Mark', '4561654415', 2014, 0, 0, 'Aprenda PHP');
 
 -- --------------------------------------------------------
 
@@ -144,14 +148,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 
 INSERT INTO `usuario` (`id`, `matricula`, `nome`, `telefone`) VALUES
 (1, 6313, 'Ruan', '561564565'),
-(2, 2015, 'Teste', '9875464'),
-(3, 2015, 'Teste', '9875464'),
-(4, 2015, 'Teste', '9875464'),
-(5, 2015, 'Teste', '9875464'),
-(6, 2015, 'Teste', '9875464'),
-(7, 2015, 'Teste', '9875464'),
+(2, 1, 'Teste1', '00012452'),
+(3, 2, 'Teste 2', '5854552'),
+(4, 3, 'Teste 3', '0012245'),
+(5, 5, 'Teste 5 ', '55555555'),
+(6, 6, 'Teste 6', '666666'),
+(7, 7887, 'Teste 7', '777454'),
 (8, 2015, 'Teste', '9875464'),
-(9, 2015, 'Teste', '9875464'),
+(9, 1999, 'Teste 9', '999999'),
 (10, 2015, 'Teste', '9875464');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

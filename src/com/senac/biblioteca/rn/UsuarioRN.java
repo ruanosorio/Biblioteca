@@ -28,8 +28,8 @@ public class UsuarioRN {
         bd.editar(p_usuario);
     }
     
-    public List<Usuario> listaUsuario(Usuario p_usuario){
-        return bd.listaUsuario(p_usuario);
+    public List<Usuario> listaUsuario(){
+        return bd.listaUsuario();
     }
     
     public void excluir(Usuario p_usuario){

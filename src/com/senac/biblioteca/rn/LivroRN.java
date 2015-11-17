@@ -28,8 +28,8 @@ public class LivroRN {
         bd.editar(p_livro);
     }
     
-    public List<Livro> listaLivro(Livro p_livro){
-        return bd.listaLivro(p_livro);
+    public List<Livro> listaLivro(){
+        return bd.listaLivro();
     }
     
     public void excluir(Livro p_livro){

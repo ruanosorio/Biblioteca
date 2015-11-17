@@ -88,7 +88,7 @@ public class EmprestimoBD {
             pstm.executeUpdate();
 
         } catch (Exception e) {
-            log.error("Erro ao tentar inserir emprestimo");
+            log.error("Erro, ao tentar efetuar o emprestimo do livro!");
             throw new RuntimeException(e);
         } finally {
             if (conn != null) {
@@ -128,14 +128,12 @@ public class EmprestimoBD {
             
             //log.error("Erro em: "+sql);
             
-            PreparedStatement pmst = conn.prepareStatement(sql);
-            
+            PreparedStatement pmst = conn.prepareStatement(sql);          
             pmst.setInt(1, usuario.getId());
             
             ResultSet rs = pmst.executeQuery();
             
-            List<Emprestimo> emprestimos = new ArrayList<>();
-            
+            List<Emprestimo> emprestimos = new ArrayList<>();            
             Emprestimo emp;            
             Livro livro;
             Usuario user;
@@ -154,7 +152,7 @@ public class EmprestimoBD {
                 livro.setAno(rs.getInt("ano_livro"));
                 livro.setDescricao(rs.getString("descricao_livro"));
                 livro.setAutor(rs.getString("autor_livro"));
-                livro.setIsbn(rs.getString("isbn")); //: Column 'isbn' not found
+               livro.setIsbn(rs.getString("isbn_livro")); //: Column 'isbn' not found
                 livro.setTitulo(rs.getString("titulo_livro"));
                 emp.setLivro(livro);
 
@@ -168,6 +166,7 @@ public class EmprestimoBD {
             }
 
             return emprestimos;
+            
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -186,7 +185,7 @@ public class EmprestimoBD {
 
             conn = ConexaoBD.getConexao();
 
-            PreparedStatement pstm = conn.prepareStatement("DELETE FROM emprestimo WHERE id=?");
+            PreparedStatement pstm = conn.prepareStatement("DELETE FROM emprestimo WHERE id_usuario=?");
             pstm.setInt(1, p_usuario.getId());
 
             pstm.execute();

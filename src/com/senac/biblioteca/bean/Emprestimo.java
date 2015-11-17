@@ -157,11 +157,12 @@ public class Emprestimo {
 
     @Override
     public String toString() {
-        return "Emprestimo{" + usuario + ", " 
-                                + livro + ", " 
-                                + "Data de Emprestimo=" + dtEmprestimo 
-                                    + ", Data de Devolução=" + dtDevolucao 
-                            + '}';
+        return "Livros Emprestados \n "
+                + "Nome do Usuario = " + usuario.getNome() + " \n "
+                + "Nome do Livro = " + livro.getTitulo() + " \n "
+                + "Data de Emprestimo = " + dtEmprestimo
+                + " "
+                + "Data de Devolução = " + dtDevolucao;
     }
 
 }
