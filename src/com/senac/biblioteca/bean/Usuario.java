@@ -77,23 +77,15 @@ public class Usuario {
         this.nome = nome;
     }
 
-    /**
-     * Método para retornar o telefone do Usuário.
-     *
-     * @return String - this.telefone.
-     */
     public String getTelefone() {
-        return this.telefone;
+        return telefone;
     }
 
-    /**
-     * Método para atribuir um telefone ao Usuário.
-     *
-     * @param p_telefone String - Telefone do Usuário.
-     */
-    public void setTelefone(String p_telefone) {
-        this.telefone = p_telefone;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
+
+
 
     public List<Emprestimo> getEmprestimosItems() {
         return this.emprestimoItems;

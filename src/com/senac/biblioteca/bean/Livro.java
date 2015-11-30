@@ -1,5 +1,6 @@
 package com.senac.biblioteca.bean;
 
+import com.towel.el.annotation.Resolvable;
 import java.util.Objects;
 
 /**
@@ -10,13 +11,19 @@ import java.util.Objects;
  */
 public class Livro {
     
-    private int id;
+    
+    private Integer id;
+    @Resolvable(colName = "Título")
     private String titulo;
+    @Resolvable(colName = "Autor")
     private String autor;
+    @Resolvable(colName = "ISBN")
     private String isbn;
+    @Resolvable(colName = "Ano")
     private int ano;
     private Editora editora = new Editora();
-    private String descricao;
+    @Resolvable(colName = "Descrição")
+    private String descricao;    
     private Categoria categoria = new Categoria();
 
     /**
@@ -166,11 +173,11 @@ public class Livro {
         this.categoria = categoria;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

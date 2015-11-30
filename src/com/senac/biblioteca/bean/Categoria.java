@@ -62,10 +62,10 @@ public class Categoria {
     }
 
     
-    
+    //metodo toString sobreescrito
     @Override
     public String toString() {
-        return "Categoria{" + "descricao=" + nome + '}';
+        return this.nome;
     }
 
         

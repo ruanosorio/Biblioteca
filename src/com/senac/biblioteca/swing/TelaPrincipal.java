@@ -40,6 +40,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemMenuGerenciarUsuarios = new javax.swing.JMenuItem();
         menuLivros = new javax.swing.JMenu();
         itemMenuCadastrarLivros = new javax.swing.JMenuItem();
+        itemMenuCadastrarCategoria = new javax.swing.JMenuItem();
         itemMenuGerenciarLivros = new javax.swing.JMenuItem();
         menuEmprestimo = new javax.swing.JMenu();
         itemMenuNovoEmprestimo = new javax.swing.JMenuItem();
@@ -51,7 +52,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Biblioteca ROS");
-        setLocation(new java.awt.Point(0, 0));
 
         desktopPanePrincipal.setBackground(new java.awt.Color(204, 204, 204));
         desktopPanePrincipal.setForeground(new java.awt.Color(204, 204, 204));
@@ -98,9 +98,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuLivros.setText("Gerenciars Livros");
 
         itemMenuCadastrarLivros.setText("Cadastrar Livro");
+        itemMenuCadastrarLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuCadastrarLivrosActionPerformed(evt);
+            }
+        });
         menuLivros.add(itemMenuCadastrarLivros);
 
+        itemMenuCadastrarCategoria.setText("Cadastrar Categoria");
+        itemMenuCadastrarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuCadastrarCategoriaActionPerformed(evt);
+            }
+        });
+        menuLivros.add(itemMenuCadastrarCategoria);
+
         itemMenuGerenciarLivros.setText("Gerenciar Livros");
+        itemMenuGerenciarLivros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuGerenciarLivrosActionPerformed(evt);
+            }
+        });
         menuLivros.add(itemMenuGerenciarLivros);
 
         jMenuBarPrincipal.add(menuLivros);
@@ -190,6 +208,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cadastrar.setVisible(true);
     }//GEN-LAST:event_itemMenuCadastrarUsuarioActionPerformed
 
+    private void itemMenuCadastrarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuCadastrarLivrosActionPerformed
+            // TODO add your handling code here:
+        CadastrarLivro cadastrar = new CadastrarLivro();
+        desktopPanePrincipal.add(cadastrar);
+        cadastrar.setVisible(true);
+    }//GEN-LAST:event_itemMenuCadastrarLivrosActionPerformed
+
+    private void itemMenuGerenciarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuGerenciarLivrosActionPerformed
+        // TODO add your handling code here:
+        GerenciarLivros gerenciar = new GerenciarLivros(this);
+        desktopPanePrincipal.add(gerenciar);
+        gerenciar.setVisible(true);
+    }//GEN-LAST:event_itemMenuGerenciarLivrosActionPerformed
+
+    private void itemMenuCadastrarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuCadastrarCategoriaActionPerformed
+        // TODO add your handling code here:
+        Login login = new Login();
+        login.setVisible(true);
+    }//GEN-LAST:event_itemMenuCadastrarCategoriaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -227,6 +265,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPanePrincipal;
+    private javax.swing.JMenuItem itemMenuCadastrarCategoria;
     private javax.swing.JMenuItem itemMenuCadastrarLivros;
     private javax.swing.JMenuItem itemMenuCadastrarUsuario;
     private javax.swing.JMenuItem itemMenuDevolucaoEmprestimo;
