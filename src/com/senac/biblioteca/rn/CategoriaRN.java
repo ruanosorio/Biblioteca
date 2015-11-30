@@ -29,7 +29,7 @@ public class CategoriaRN {
         bd.editar(p_categoria);
     }
     
-    public List<Categoria> listaLivro() {
+    public List<Categoria> listaCategoria() {
         return bd.listaCategoria();
     }
     

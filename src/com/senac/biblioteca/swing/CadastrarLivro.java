@@ -5,8 +5,15 @@
  */
 package com.senac.biblioteca.swing;
 
+import com.senac.biblioteca.bd.CategoriaBD;
+import com.senac.biblioteca.bean.Categoria;
 import com.senac.biblioteca.bean.Livro;
+import com.senac.biblioteca.rn.CategoriaRN;
 import com.senac.biblioteca.rn.LivroRN;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,11 +24,22 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
 
     Integer id = null;
     
+    private CategoriaBD catBD;
+   // List<Categoria> listaCAT = new ArrayList<>();
+    private Vector<Categoria> vetorCAT;
+    
     /**
      * Creates new form CadastrarLivro
      */
-    public CadastrarLivro() {
+    public CadastrarLivro() {        
         initComponents();
+        try {
+            catBD = new CategoriaBD();
+            vetorCAT = catBD.carregaCombo();
+            jcomboCategoria.setModel(new DefaultComboBoxModel(vetorCAT));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Erro:"+e.getMessage());
+        }
     }    
     
     public CadastrarLivro(Livro p_livro) {
@@ -133,7 +151,7 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jcomboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanelDadosCadastraisLayout.setVerticalGroup(
             jPanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +183,7 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                     .addGroup(jPanelDadosCadastraisLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         btnSalvar.setText("Salvar");
@@ -187,28 +205,25 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanelDadosCadastrais, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSalvar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnCancelar)
-                        .addGap(35, 35, 35))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSalvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCancelar)
+                .addGap(35, 35, 35))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelDadosCadastrais, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelDadosCadastrais, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelDadosCadastrais, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnSalvar))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -246,10 +261,6 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    public void popularComboCategoria(){
-        //metodo para popular a combobox categoria
-                
-    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
