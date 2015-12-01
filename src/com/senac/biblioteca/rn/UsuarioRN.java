@@ -21,7 +21,13 @@ public class UsuarioRN {
     }
  
     public void salvar(Usuario p_usuario){
-        bd.salvar(p_usuario);
+         //se o getId for igual a "null" Salva se não Edita
+        if(p_usuario.getId() == null){
+            bd.salvar(p_usuario);
+        }else{
+            bd.editar(p_usuario);
+        }
+        
     }
 
     public void editar(Usuario p_usuario){

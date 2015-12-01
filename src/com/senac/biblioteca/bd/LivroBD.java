@@ -26,7 +26,7 @@ import org.apache.log4j.Logger;
  */
 public class LivroBD {
 
-    static Logger log = Logger.getLogger(UsuarioBD.class);
+    static Logger log = Logger.getLogger(LivroBD.class);
 
     public void salvar(Livro p_livro) {
         Connection conn = null;
@@ -45,7 +45,7 @@ public class LivroBD {
             pstm.setInt(6, p_livro.getCategoria().getId());
             pstm.setString(7, p_livro.getDescricao());
 
-            log.info("Inserindo Livrooo no banco de dados");
+            log.info("Inserindo Livro no banco de dados");
 
             pstm.executeUpdate();
             Long id = ConexaoBD.getLastKey(pstm);
@@ -54,7 +54,7 @@ public class LivroBD {
             log.info("ID criado = " + p_livro.getId());
 
         } catch (Exception e) {
-            log.error("Erro ao tentar inserir livro");
+            log.error("Erro ao tentar inserir novo Livro!");
             throw new RuntimeException(e);
         } finally {
             if (conn != null) {
@@ -67,16 +67,16 @@ public class LivroBD {
     }
 
     public void editar(Livro p_livro) {
-        
+
         Connection conn = null;
         try {
-            
+
             log.info("Abrindo conexão com o banco");
-            
+
             conn = ConexaoBD.getConexao();
             PreparedStatement pstm = conn.prepareStatement(""
                     + "update livro set "
-                     + "titulo = ? ,"
+                    + "titulo = ? ,"
                     + "autor = ? ,"
                     + "isbn = ? ,"
                     + "ano = ? ,"
@@ -84,21 +84,20 @@ public class LivroBD {
                     + "id_categoria = ? ,"
                     + "descricao = ? "
                     + "where id = ?");
-            
-            pstm.setString(1,p_livro.getTitulo());
-            pstm.setString(2,p_livro.getAutor());
-            pstm.setString(3,p_livro.getIsbn());
-            pstm.setInt(4,p_livro.getAno());
+
+            pstm.setString(1, p_livro.getTitulo());
+            pstm.setString(2, p_livro.getAutor());
+            pstm.setString(3, p_livro.getIsbn());
+            pstm.setInt(4, p_livro.getAno());
             pstm.setString(5, p_livro.getEditora().getNome());
-            pstm.setString(6,p_livro.getCategoria().getNome());
-            pstm.setString(7,p_livro.getDescricao());
+            pstm.setString(6, p_livro.getCategoria().getNome());
+            pstm.setString(7, p_livro.getDescricao());
             pstm.setInt(8, p_livro.getId());
-            
+
             log.info("Livro editado!");
 
             pstm.executeUpdate();
 
-            
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -119,7 +118,11 @@ public class LivroBD {
         Connection conn = null;
         try {
 
+            log.info("Abrindo conexão com o banco");
+
             conn = ConexaoBD.getConexao();
+
+            log.info("Executando o select livro");
 
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM livro");
             ResultSet rs = pstm.executeQuery();

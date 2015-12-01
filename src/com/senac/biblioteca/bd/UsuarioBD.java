@@ -107,9 +107,13 @@ public class UsuarioBD {
 
         Connection conn = null;
         try {
-
+            
+            log.info("Abrindo conexão com o banco");
+            
             conn = ConexaoBD.getConexao();
 
+            log.info("executando o select usuários");
+            
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM usuario");
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
@@ -124,7 +128,7 @@ public class UsuarioBD {
                 lista.add(usuarios);
 
             }
-
+            System.out.println(lista);
             return lista;
 
         } catch (Exception ex) {

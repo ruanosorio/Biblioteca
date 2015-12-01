@@ -91,6 +91,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuUsuarios.add(itemMenuCadastrarUsuario);
 
         itemMenuGerenciarUsuarios.setText("Gerenciar Usuários");
+        itemMenuGerenciarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuGerenciarUsuariosActionPerformed(evt);
+            }
+        });
         menuUsuarios.add(itemMenuGerenciarUsuarios);
 
         jMenuBarPrincipal.add(menuUsuarios);
@@ -227,6 +232,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Login login = new Login();
         login.setVisible(true);
     }//GEN-LAST:event_itemMenuCadastrarCategoriaActionPerformed
+
+    private void itemMenuGerenciarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuGerenciarUsuariosActionPerformed
+        // TODO add your handling code here:
+        GerenciarUsuarios gerenciar = new GerenciarUsuarios(this);
+        desktopPanePrincipal.add(gerenciar);
+        gerenciar.setVisible(true);
+    }//GEN-LAST:event_itemMenuGerenciarUsuariosActionPerformed
 
     /**
      * @param args the command line arguments

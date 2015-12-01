@@ -1,5 +1,6 @@
 package com.senac.biblioteca.bean;
 
+import com.towel.el.annotation.Resolvable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,9 +13,12 @@ import java.util.Objects;
  */
 public class Usuario {
     
-    private int id;
+    private Integer id;
+    @Resolvable(colName = "Matrícula")
     private int matricula;
+    @Resolvable(colName = "Nome")
     private String nome;
+    @Resolvable(colName = "Telefone")
     private String telefone;
     private List<Emprestimo> emprestimoItems = new ArrayList<>();
     //private List<Emprestimo> emprestimoItems = new ArrayList<Emprestimo>();
@@ -95,11 +99,11 @@ public class Usuario {
         this.emprestimoItems = p_emprestimoItems;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -138,22 +142,27 @@ public class Usuario {
     }
        
     
+//    @Override
+//    public String toString() {
+//        StringBuilder stringBuffer = new StringBuilder();
+//        stringBuffer.append("Matricula: ");
+//        stringBuffer.append(this.matricula);
+//        stringBuffer.append(" Nome: ");
+//        stringBuffer.append(this.nome);
+//        stringBuffer.append(" Telefone: ");
+//        stringBuffer.append(this.telefone);       
+//        
+//        // pensar como implementar a estrutura adequada do emprestimo dos livros
+//        
+////        StringBuffer.append("EmprestimoItems: ");
+////        stringBuffer.append(this.emprestimoItems);
+//
+//        return stringBuffer.toString();
+//    }
+
     @Override
     public String toString() {
-        StringBuilder stringBuffer = new StringBuilder();
-        stringBuffer.append("Matricula: ");
-        stringBuffer.append(this.matricula);
-        stringBuffer.append(" Nome: ");
-        stringBuffer.append(this.nome);
-        stringBuffer.append(" Telefone: ");
-        stringBuffer.append(this.telefone);       
-        
-        // pensar como implementar a estrutura adequada do emprestimo dos livros
-        
-//        StringBuffer.append("EmprestimoItems: ");
-//        stringBuffer.append(this.emprestimoItems);
-
-        return stringBuffer.toString();
-    }
+        return "Usuario{" + "id=" + id + ", matricula=" + matricula + ", nome=" + nome + ", telefone=" + telefone + ", emprestimoItems=" + emprestimoItems + '}';
+    }   
     
 }

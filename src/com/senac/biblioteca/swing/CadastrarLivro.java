@@ -45,6 +45,14 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
     public CadastrarLivro(Livro p_livro) {
         initComponents();
         
+        try {
+            catBD = new CategoriaBD();
+            vetorCAT = catBD.carregaCombo();
+            jcomboCategoria.setModel(new DefaultComboBoxModel(vetorCAT));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Erro:"+e.getMessage());
+        }
+        
         // Fazer os setrs
         txtAutor.setText(p_livro.getAutor());
         txtTitulo.setText(p_livro.getTitulo());
@@ -244,6 +252,8 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                 book.setIsbn(txtISBN.getText());
                 book.setDescricao(txtDescricao.getText());
                 book.setAno(Integer.parseInt(txtAno.getText()));
+                
+                book.setCategoria(vetorCAT.get(jcomboCategoria.getSelectedIndex()));
                 
                 LivroRN bookRN = new LivroRN();
                 

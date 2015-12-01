@@ -11,13 +11,25 @@ import javax.swing.JOptionPane;
  */
 public class CadastrarUsuario extends javax.swing.JInternalFrame {
 
+    Integer id = null;
     /**
      * Creates new form CadastrarUsuario
      */
     public CadastrarUsuario() {
         initComponents();
     }
-
+    
+    public CadastrarUsuario(Usuario p_usuario){
+        initComponents();
+        txtNome.setText(p_usuario.getNome());
+        txtMatricula.setText(String.valueOf(p_usuario.getMatricula()));
+        txtTelefone.setText(p_usuario.getTelefone());
+        
+        id = p_usuario.getId();
+        
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

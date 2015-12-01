@@ -60,6 +60,7 @@ public class GerenciarLivros extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbGerenciarLivros = new javax.swing.JTable();
 
+        setClosable(true);
         setPreferredSize(new java.awt.Dimension(610, 513));
 
         tbGerenciarLivros.setModel(new javax.swing.table.DefaultTableModel(
@@ -86,7 +87,7 @@ public class GerenciarLivros extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbGerenciarLivrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbGerenciarLivrosMouseClicked
-        // TODO add your handling code here:
+        // Ao clicar em algum campo da tabale gerenciar livros é executado este método.
         
         if(evt.getClickCount() == 2){
             
