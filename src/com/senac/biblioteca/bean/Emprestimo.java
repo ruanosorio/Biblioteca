@@ -1,5 +1,6 @@
 package com.senac.biblioteca.bean;
 
+import com.towel.el.annotation.Resolvable;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -13,11 +14,15 @@ import java.util.Objects;
 public class Emprestimo {
 
     private int id;
+    @Resolvable(colName = "Nome do Usuário")
     private Usuario usuario;
+    @Resolvable(colName = "Livro")
     private Livro livro;
+    @Resolvable(colName = "Data do Empréstimo")
     private Date dtEmprestimo;
+    @Resolvable(colName = "Data de Devolução")
     private Date dtDevolucao;
-
+    @Resolvable(colName = "Devolvido")
     private String indDevolvido;
 
     /**
@@ -79,7 +84,7 @@ public class Emprestimo {
      *
      * @return Date - dtDevolucao.
      */
-    public Date getDtDevoluco() {
+    public Date getDtDevolucao() {
         return this.dtDevolucao;
     }
 

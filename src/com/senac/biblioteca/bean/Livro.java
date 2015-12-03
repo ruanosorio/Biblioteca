@@ -224,7 +224,7 @@ public class Livro {
         return true;
     }
     public String toString() {
-        return "Livro{" + "titulo=" + titulo + ", autor=" + autor + ", ISBN=" + isbn + ", ano=" + ano + ", editora=" + editora + ", descricao=" + descricao + ", categoria=" + categoria + '}';
+        return "Livro{" + "titulo=" + titulo + ", autor=" + autor + ", ISBN=" + isbn + ", ano=" + ano + ", editora=" + editora + ", descricao=" + descricao + ", categoria=" + categoria.getNome() + '}';
     }
     
     

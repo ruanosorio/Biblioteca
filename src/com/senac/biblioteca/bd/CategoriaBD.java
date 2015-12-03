@@ -66,18 +66,18 @@ public class CategoriaBD {
             conn = ConexaoBD.getConexao();
             PreparedStatement pstm = conn.prepareStatement("INSERT INTO categoria (nome) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
 
-            pstm.setString(2, p_categoria.getNome());
-
-            log.info("Inserindo Usuário no banco de dados");
+            pstm.setString(1, p_categoria.getNome());
 
             pstm.executeUpdate();
+            log.info("Inserindo Categoria no banco de dados");
+            
             Long id = ConexaoBD.getLastKey(pstm);
             p_categoria.setId(id == null ? null : id.intValue());
 
             log.info("Usuário criado, seu ID = " + p_categoria.getId());
 
         } catch (Exception e) {
-            log.error("Erro ao tentar inserir categoria");
+            log.error("Erro ao tentar inserir Categoria");
             throw new RuntimeException(e);
         } finally {
             if (conn != null) {

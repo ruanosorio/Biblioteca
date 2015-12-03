@@ -2,6 +2,7 @@ package com.senac.biblioteca.swing;
 
 import com.senac.biblioteca.bean.Usuario;
 import com.senac.biblioteca.rn.UsuarioRN;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,24 +13,27 @@ import javax.swing.JOptionPane;
 public class CadastrarUsuario extends javax.swing.JInternalFrame {
 
     Integer id = null;
+    GerenciarUsuarios gerenciarUsuarios;
+
     /**
      * Creates new form CadastrarUsuario
      */
     public CadastrarUsuario() {
         initComponents();
     }
-    
-    public CadastrarUsuario(Usuario p_usuario){
+
+    public CadastrarUsuario(Usuario p_usuario, GerenciarUsuarios usuarios) {
         initComponents();
+        this.gerenciarUsuarios = usuarios;
+
         txtNome.setText(p_usuario.getNome());
         txtMatricula.setText(String.valueOf(p_usuario.getMatricula()));
         txtTelefone.setText(p_usuario.getTelefone());
-        
+
         id = p_usuario.getId();
-        
+
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -348,24 +352,29 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // Salvar Usuário
-        
+
         try {
             Usuario user = new Usuario();
-                user.setMatricula(Integer.parseInt(txtMatricula.getText()));
-                user.setNome(txtNome.getText());
-                user.setTelefone(txtTelefone.getText());
-            
-                UsuarioRN userRN = new UsuarioRN();
+            user.setId(id);
+            user.setMatricula(Integer.parseInt(txtMatricula.getText()));
+            user.setNome(txtNome.getText());
+            user.setTelefone(txtTelefone.getText());
 
-                if(!txtMatricula.getText().isEmpty() && !txtNome.getText().isEmpty()){
-                    userRN.salvar(user);
-                    JOptionPane.showMessageDialog(this, "Usuário incluído com sucesso!", "Cadastro Usuário - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
-                }                    
+            UsuarioRN userRN = new UsuarioRN();
+
+            if (!txtMatricula.getText().isEmpty() && !txtNome.getText().isEmpty()) {
+                userRN.salvar(user);
+                String mensagem = user.getId() == null ? "Usuário incluído com sucesso!" : "Usuário alterado com sucesso!";
+                JOptionPane.showMessageDialog(this, mensagem, "Cadastro Usuário - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
+            }
+            if (this.gerenciarUsuarios != null) {
+                this.gerenciarUsuarios.populaTabela();
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Usuário não cadastrado!"
-                    + "\nPor favor, preencha todos os dados.", "Erro - Sistema Biblioteca ROS", JOptionPane.ERROR_MESSAGE);         
+                    + "\nPor favor, preencha todos os dados.", "Erro - Sistema Biblioteca ROS", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

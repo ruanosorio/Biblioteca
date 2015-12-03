@@ -6,6 +6,7 @@
 package com.senac.biblioteca.swing;
 
 import com.senac.biblioteca.bean.Usuario;
+import com.senac.biblioteca.infra.UtilTela;
 import com.senac.biblioteca.rn.UsuarioRN;
 import com.towel.el.annotation.AnnotationResolver;
 import com.towel.swing.table.ObjectTableModel;
@@ -32,7 +33,7 @@ public class GerenciarUsuarios extends javax.swing.JInternalFrame {
         telaPrincipal = p_tela;
     }
 
-    private void populaTabela() {
+    public void populaTabela() {
 
         try {
             log.info("Iniciando o metodo populaTabela usuários");
@@ -40,7 +41,7 @@ public class GerenciarUsuarios extends javax.swing.JInternalFrame {
             listaUsers = new UsuarioRN().listaUsuario();
 
             AnnotationResolver resolver = new AnnotationResolver(Usuario.class);
-            ObjectTableModel<Usuario> tableModel = new ObjectTableModel<Usuario>(resolver, "matricula, nome, telefone");
+            ObjectTableModel<Usuario> tableModel = new ObjectTableModel<Usuario>(resolver, "id,matricula,nome,telefone");
             tableModel.setData(listaUsers);
             tbGerenciarUsuarios.getTableHeader().setReorderingAllowed(false);
             tbGerenciarUsuarios.setModel(tableModel);
@@ -64,6 +65,7 @@ public class GerenciarUsuarios extends javax.swing.JInternalFrame {
         tbGerenciarUsuarios = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Gerenciar Usuários - Sistema Biblioteca ROS");
 
         tbGerenciarUsuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,9 +97,11 @@ public class GerenciarUsuarios extends javax.swing.JInternalFrame {
             
             int index = tbGerenciarUsuarios.getSelectedRow();
             Usuario usuario = listaUsers.get(index);
-            CadastrarUsuario cadastrar = new CadastrarUsuario(usuario);
-            telaPrincipal.add(cadastrar);
-            cadastrar.setVisible(true);
+            
+//            CadastrarUsuario cadastrar = new CadastrarUsuario(usuario);
+//            telaPrincipal.adicionaJIF(cadastrar);
+//            cadastrar.setVisible(true);
+            UtilTela.abreTela(telaPrincipal, new CadastrarUsuario(usuario,this));
         }
         
     }//GEN-LAST:event_tbGerenciarUsuariosMouseClicked

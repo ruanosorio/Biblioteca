@@ -160,9 +160,14 @@ public class Usuario {
 //        return stringBuffer.toString();
 //    }
 
+//    @Override
+//    public String toString() {
+//        return "Usuario{" + "id=" + id + ", matricula=" + matricula + ", nome=" + nome + ", telefone=" + telefone + ", emprestimoItems=" + emprestimoItems + '}';
+//    }   
+
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", matricula=" + matricula + ", nome=" + nome + ", telefone=" + telefone + ", emprestimoItems=" + emprestimoItems + '}';
-    }   
+        return nome;
+    }
     
 }

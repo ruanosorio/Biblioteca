@@ -35,4 +35,8 @@ public class EmprestimoRN {
     public void excluir(Usuario p_usuario) {
         bd.excluir(p_usuario);
     }
+    
+    public List<Emprestimo> listaEmprestimos(){
+        return bd.listaEmprestimos();
+    }
 }

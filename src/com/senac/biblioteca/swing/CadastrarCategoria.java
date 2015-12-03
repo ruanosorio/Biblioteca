@@ -37,7 +37,7 @@ public class CadastrarCategoria extends javax.swing.JFrame {
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar Categoria - Sistema Biblioteca ROS");
 
         jLabel2.setText("Nova Categoria:");
@@ -109,7 +109,7 @@ public class CadastrarCategoria extends javax.swing.JFrame {
 
             if (!txtNome.getText().isEmpty()) {
                 catRN.salvar(cat);
-                JOptionPane.showMessageDialog(this, "Categoria incluída com sucesso!", "Cadastro Categoria - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Nova Categoria incluída com sucesso!", "Cadastro Categoria - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (Exception e) {

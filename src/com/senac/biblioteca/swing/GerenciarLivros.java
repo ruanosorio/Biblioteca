@@ -6,6 +6,7 @@
 package com.senac.biblioteca.swing;
 
 import com.senac.biblioteca.bean.Livro;
+import com.senac.biblioteca.infra.UtilTela;
 import com.senac.biblioteca.rn.LivroRN;
 import com.towel.el.annotation.AnnotationResolver;
 import com.towel.swing.table.ObjectTableModel;
@@ -43,6 +44,7 @@ public class GerenciarLivros extends javax.swing.JInternalFrame {
             tbGerenciarLivros.setModel(tableModel2);
             
         } catch (Exception e) {
+            e.printStackTrace();
             System.err.println(e.getMessage());
         }
 
@@ -61,6 +63,7 @@ public class GerenciarLivros extends javax.swing.JInternalFrame {
         tbGerenciarLivros = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Gerenciar Livros - Sistema Biblioteca ROS");
         setPreferredSize(new java.awt.Dimension(610, 513));
 
         tbGerenciarLivros.setModel(new javax.swing.table.DefaultTableModel(
@@ -94,9 +97,15 @@ public class GerenciarLivros extends javax.swing.JInternalFrame {
             int index = tbGerenciarLivros.getSelectedRow();
             Livro livro = lista.get(index);
                        
-            CadastrarLivro cadastrar = new CadastrarLivro(livro);
-            telaPrincipal.add(cadastrar);
-            cadastrar.setVisible(true);
+//            CadastrarLivro cadastrar = new CadastrarLivro(livro);
+//            cadastrar.setVisible(true);
+//            telaPrincipal.add(cadastrar);
+//            telaPrincipal.moveToFront(cadastrar);
+//            try{
+//            cadastrar.setSelected(true);
+//            }catch(Exception e){}
+            
+            UtilTela.abreTela(telaPrincipal, new CadastrarLivro(livro,this));
         }
         
     }//GEN-LAST:event_tbGerenciarLivrosMouseClicked

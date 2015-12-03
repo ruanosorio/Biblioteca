@@ -90,15 +90,16 @@ public class LivroBD {
             pstm.setString(3, p_livro.getIsbn());
             pstm.setInt(4, p_livro.getAno());
             pstm.setString(5, p_livro.getEditora().getNome());
-            pstm.setString(6, p_livro.getCategoria().getNome());
+            pstm.setInt(6, p_livro.getCategoria().getId());
             pstm.setString(7, p_livro.getDescricao());
             pstm.setInt(8, p_livro.getId());
 
+            pstm.executeUpdate();
+            
             log.info("Livro editado!");
 
-            pstm.executeUpdate();
-
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         } finally {
             if (conn != null) {
@@ -136,7 +137,7 @@ public class LivroBD {
                 livro.setTitulo(rs.getString("titulo"));
                 livro.setAutor(rs.getString("autor"));
                 livro.setIsbn(rs.getString("isbn"));
-
+                livro.setAno(rs.getInt("ano"));
                 //livro.setEditora(rs.getInt("id"));
                 //livro.setCategoria(rs.getInt("id"));                
                 livro.setDescricao(rs.getString("descricao"));

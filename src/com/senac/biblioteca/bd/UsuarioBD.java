@@ -76,7 +76,7 @@ public class UsuarioBD {
                     + "update usuario set "
                      + "matricula = ? ,"
                     + "nome = ? ,"
-                    + "telefone = ? ,"                  
+                    + "telefone = ? "                  
                     + "where id = ?");
             
             pstm.setInt(1,p_usuario.getMatricula());

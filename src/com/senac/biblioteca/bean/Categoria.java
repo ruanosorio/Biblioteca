@@ -1,5 +1,6 @@
 package com.senac.biblioteca.bean;
 
+import com.towel.el.annotation.Resolvable;
 import java.util.Objects;
 
 /**
@@ -11,6 +12,7 @@ import java.util.Objects;
 public class Categoria {
     
     private int id;
+    @Resolvable(colName = "Categoria Livro")
     private String nome;
 
     public Categoria() {

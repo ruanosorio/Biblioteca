@@ -5,7 +5,10 @@
  */
 package com.senac.biblioteca.swing;
 
+import com.senac.biblioteca.bean.Livro;
+import com.senac.biblioteca.infra.UtilTela;
 import static java.awt.image.ImageObserver.WIDTH;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +23,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,6 +60,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         desktopPanePrincipal.setBackground(new java.awt.Color(204, 204, 204));
         desktopPanePrincipal.setForeground(new java.awt.Color(204, 204, 204));
         desktopPanePrincipal.setPreferredSize(new java.awt.Dimension(760, 550));
+        getContentPane().add(desktopPanePrincipal, java.awt.BorderLayout.CENTER);
 
         menuArquivo.setText("Arquivo");
 
@@ -137,6 +142,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuEmprestimo.add(itemMenuDevolucaoEmprestimo);
 
         itemMenuEmprestimos.setText("Empréstimos");
+        itemMenuEmprestimos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuEmprestimosActionPerformed(evt);
+            }
+        });
         menuEmprestimo.add(itemMenuEmprestimos);
 
         jMenuBarPrincipal.add(menuEmprestimo);
@@ -162,19 +172,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBarPrincipal.add(menuSair);
 
         setJMenuBar(jMenuBarPrincipal);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPanePrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(desktopPanePrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
 
         pack();
         setLocationRelativeTo(null);
@@ -215,16 +212,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void itemMenuCadastrarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuCadastrarLivrosActionPerformed
             // TODO add your handling code here:
-        CadastrarLivro cadastrar = new CadastrarLivro();
-        desktopPanePrincipal.add(cadastrar);
-        cadastrar.setVisible(true);
+
+        UtilTela.abreTela(this, new CadastrarLivro());
     }//GEN-LAST:event_itemMenuCadastrarLivrosActionPerformed
 
+    public void adicionaJIF(JInternalFrame jif){
+        desktopPanePrincipal.add(jif);
+    }
+
+    
     private void itemMenuGerenciarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuGerenciarLivrosActionPerformed
-        // TODO add your handling code here:
-        GerenciarLivros gerenciar = new GerenciarLivros(this);
-        desktopPanePrincipal.add(gerenciar);
-        gerenciar.setVisible(true);
+        
+        UtilTela.abreTela(this, new GerenciarLivros(this));
     }//GEN-LAST:event_itemMenuGerenciarLivrosActionPerformed
 
     private void itemMenuCadastrarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuCadastrarCategoriaActionPerformed
@@ -235,11 +234,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void itemMenuGerenciarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuGerenciarUsuariosActionPerformed
         // TODO add your handling code here:
-        GerenciarUsuarios gerenciar = new GerenciarUsuarios(this);
-        desktopPanePrincipal.add(gerenciar);
-        gerenciar.setVisible(true);
+        
+//        GerenciarUsuarios gerenciar = new GerenciarUsuarios(this);
+//        desktopPanePrincipal.add(gerenciar);
+//        gerenciar.setVisible(true);
+        UtilTela.abreTela(this, new GerenciarUsuarios(this));
     }//GEN-LAST:event_itemMenuGerenciarUsuariosActionPerformed
 
+    private void itemMenuEmprestimosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuEmprestimosActionPerformed
+        // TODO add your handling code here:
+        UtilTela.abreTela(this, new Emprestimos(this));
+    }//GEN-LAST:event_itemMenuEmprestimosActionPerformed
+
+    
+    public void moveToFront(JInternalFrame jif){
+        desktopPanePrincipal.moveToFront(jif);        
+    }
     /**
      * @param args the command line arguments
      */

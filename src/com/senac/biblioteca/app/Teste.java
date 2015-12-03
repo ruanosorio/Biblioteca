@@ -20,27 +20,27 @@ import org.apache.log4j.chainsaw.Main;
  */
 public class Teste {
 
-    public static void mains(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
-//        Usuario u = new Usuario();
-//        
-//        u.setId(9);
-//        u.setId(10);
-//        List<Emprestimo> emps = new EmprestimoBD().listaEmprestimoDoUsuario(u);
-//        for (Emprestimo emp : emps) {
-//            System.out.println(emp);
-//
-//        }
-//        
-//        List<Livro> l = new LivroBD().listaLivro();
-//        for (Livro livros : l){
-//            System.out.println(livros);
-//        }
-//        
-//        List<Usuario> ul = new UsuarioBD().listaUsuario();
-//        for (Usuario usuarios : ul){
-//            System.out.println(usuarios);
-//        }
+        Usuario u = new Usuario();
+        
+        u.setId(9);
+        u.setId(10);
+        List<Emprestimo> emps = new EmprestimoBD().listaEmprestimoDoUsuario(u);
+        for (Emprestimo emp : emps) {
+            System.out.println(emp);
+
+        }
+        
+        List<Livro> l = new LivroBD().listaLivro();
+        for (Livro livros : l){
+            System.out.println(livros);
+        }
+        
+        List<Usuario> ul = new UsuarioBD().listaUsuario();
+        for (Usuario usuarios : ul){
+            System.out.println(usuarios);
+        }
         
         
         /*
@@ -58,7 +58,7 @@ public class Teste {
         new EmprestimoBD().devolucao(emprestimo);
     }
 
-    public static void main(String[] args) {
+    public static void maiffn(String[] args) {
 
         UsuarioBD user = new UsuarioBD();
 

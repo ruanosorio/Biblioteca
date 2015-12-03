@@ -23,49 +23,48 @@ import javax.swing.JOptionPane;
 public class CadastrarLivro extends javax.swing.JInternalFrame {
 
     Integer id = null;
-    
+
     private CategoriaBD catBD;
-   // List<Categoria> listaCAT = new ArrayList<>();
+    // List<Categoria> listaCAT = new ArrayList<>();
     private Vector<Categoria> vetorCAT;
-    
+    GerenciarLivros gerenciarLivros;
+
     /**
      * Creates new form CadastrarLivro
      */
-    public CadastrarLivro() {        
+    public CadastrarLivro() {
         initComponents();
         try {
             catBD = new CategoriaBD();
             vetorCAT = catBD.carregaCombo();
             jcomboCategoria.setModel(new DefaultComboBoxModel(vetorCAT));
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Erro:"+e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro:" + e.getMessage());
         }
-    }    
-    
-    public CadastrarLivro(Livro p_livro) {
+    }
+
+    public CadastrarLivro(Livro p_livro, GerenciarLivros gerenciarLivros) {
         initComponents();
-        
+        this.gerenciarLivros = gerenciarLivros;
         try {
             catBD = new CategoriaBD();
             vetorCAT = catBD.carregaCombo();
             jcomboCategoria.setModel(new DefaultComboBoxModel(vetorCAT));
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Erro:"+e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Erro:" + e.getMessage());
         }
-        
+
         // Fazer os setrs
         txtAutor.setText(p_livro.getAutor());
         txtTitulo.setText(p_livro.getTitulo());
         txtISBN.setText(p_livro.getIsbn());
         txtAno.setText(String.valueOf(p_livro.getAno()));
         txtDescricao.setText(p_livro.getDescricao());
-        
+
         id = p_livro.getId();
-        
+
     }
-    
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,6 +111,7 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
 
         txtDescricao.setColumns(20);
         txtDescricao.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txtDescricao.setLineWrap(true);
         txtDescricao.setRows(5);
         jScrollPane1.setViewportView(txtDescricao);
 
@@ -159,7 +159,7 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jcomboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanelDadosCadastraisLayout.setVerticalGroup(
             jPanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,14 +184,11 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                     .addComponent(jcomboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(txtEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
                 .addGroup(jPanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelDadosCadastraisLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanelDadosCadastraisLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         btnSalvar.setText("Salvar");
@@ -219,7 +216,7 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                 .addComponent(btnCancelar)
                 .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelDadosCadastrais, javax.swing.GroupLayout.DEFAULT_SIZE, 626, Short.MAX_VALUE)
+                .addComponent(jPanelDadosCadastrais, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -244,34 +241,37 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         // Salvar Livro
-        
+
         try {
             Livro book = new Livro();
-                book.setTitulo(txtTitulo.getText());
-                book.setAutor(txtAutor.getText());
-                book.setIsbn(txtISBN.getText());
-                book.setDescricao(txtDescricao.getText());
-                book.setAno(Integer.parseInt(txtAno.getText()));
-                
-                book.setCategoria(vetorCAT.get(jcomboCategoria.getSelectedIndex()));
-                
-                LivroRN bookRN = new LivroRN();
-                
-                book.setId(id);
-                
-                if(!txtTitulo.getText().isEmpty() && !txtAutor.getText().isEmpty() && !txtISBN.getText().isEmpty()){
-                    bookRN.salvar(book);
-                    JOptionPane.showMessageDialog(this, "Livro incluído com sucesso!", "Cadastro Livro - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
-                }
+            book.setId(id);
+            book.setTitulo(txtTitulo.getText());
+            book.setAutor(txtAutor.getText());
+            book.setIsbn(txtISBN.getText());
+            book.setDescricao(txtDescricao.getText());
+            book.setAno(Integer.parseInt(txtAno.getText()));
+
+            book.setCategoria(vetorCAT.get(jcomboCategoria.getSelectedIndex()));
+
+            LivroRN bookRN = new LivroRN();
+
+            if (!txtTitulo.getText().isEmpty() && !txtAutor.getText().isEmpty() && !txtISBN.getText().isEmpty()) {
+                String mensagem = book.getId() == null ? "Livro incluído com sucesso!" : "Livro alterado com sucesso!";
+                bookRN.salvar(book);
+                JOptionPane.showMessageDialog(this, mensagem, "Cadastro Livro - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
+            }
             
+            if (gerenciarLivros != null) {
+                gerenciarLivros.populaTabela();
+            }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Livro não cadastrado!"
-                    + "\nPor favor, preencha todos os dados.", "Erro - Sistema Biblioteca ROS", JOptionPane.ERROR_MESSAGE);         
-        }        
-        
+                    + "\nPor favor, preencha todos os dados.", "Erro - Sistema Biblioteca ROS", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
