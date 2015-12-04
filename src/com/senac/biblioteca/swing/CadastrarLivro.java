@@ -92,6 +92,7 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
         txtEditora = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
 
         setBorder(null);
         setClosable(true);
@@ -205,6 +206,13 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
             }
         });
 
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -212,6 +220,8 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnExcluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelar)
                         .addGap(18, 18, 18)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -226,7 +236,8 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
-                    .addComponent(btnSalvar))
+                    .addComponent(btnSalvar)
+                    .addComponent(btnExcluir))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -274,9 +285,30 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        Livro book = new Livro();
+        book.setId(id);
+        if (book.getId() == null) {
+            JOptionPane.showMessageDialog(this, "Código deve ser informado");
+        } else {
+            if (JOptionPane.showConfirmDialog(this,
+                    "Deseja mesmo excluir este registro?") == JOptionPane.OK_OPTION) {
+                try {
+                    LivroRN bookRN = new LivroRN();
+                    bookRN.excluir(book);
+                    JOptionPane.showMessageDialog(this, "Registro excluído com sucesso!");
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage());
+                }
+            }
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
