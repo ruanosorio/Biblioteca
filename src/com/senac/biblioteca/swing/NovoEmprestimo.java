@@ -5,12 +5,13 @@
  */
 package com.senac.biblioteca.swing;
 
-import com.senac.biblioteca.bd.UsuarioBD;
+import com.senac.biblioteca.bd.EmprestimoBD;
+import com.senac.biblioteca.bean.Emprestimo;
 import com.senac.biblioteca.bean.Livro;
 import com.senac.biblioteca.bean.Usuario;
+import com.senac.biblioteca.rn.EmprestimoRN;
 import com.senac.biblioteca.rn.LivroRN;
 import com.senac.biblioteca.rn.UsuarioRN;
-import com.sun.org.apache.xerces.internal.impl.xs.opti.DefaultText;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -20,12 +21,15 @@ import javax.swing.JOptionPane;
  * @author Ruan Osorio
  */
 public class NovoEmprestimo extends javax.swing.JInternalFrame {
+
     TelaPrincipal telaPrincipal;
-    
-    UsuarioRN user = new UsuarioRN();
-    LivroRN book = new LivroRN();
-    private Vector<Usuario> vetUser;    
+
+    UsuarioRN userRN = new UsuarioRN();
+    LivroRN bookRN = new LivroRN();
+    private Vector<Usuario> vetUser;
     private Vector<Livro> vetLivro;
+    Emprestimo emp = new Emprestimo(null, null);
+
     /**
      * Creates new form NewEmprestimo
      */
@@ -213,8 +217,8 @@ public class NovoEmprestimo extends javax.swing.JInternalFrame {
 
     private void btnPesquisarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarUsuarioActionPerformed
         // Pesquisar Usuário
-        try {                     
-            vetUser = user.pesquisar(txtPesqUsuario.getText());
+        try {
+            vetUser = userRN.pesquisar(txtPesqUsuario.getText());
             txtNomeUsuario.setText(vetUser.toString());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
@@ -223,23 +227,35 @@ public class NovoEmprestimo extends javax.swing.JInternalFrame {
 
     private void btnPesquisarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarLivroActionPerformed
         // Pesquisar livro
-        try {                     
-            vetLivro = book.pesquisar(txtPesqLivro.getText());
+        try {
+            vetLivro = bookRN.pesquisar(txtPesqLivro.getText());
             txtTituloLivro.setText(vetLivro.toString());
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
-                
+
     }//GEN-LAST:event_btnPesquisarLivroActionPerformed
 
     private void txtEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmprestarActionPerformed
         // TODO add your handling code here:
-        
+
         try {
+            vetLivro = bookRN.pesquisar(txtTituloLivro.getText());
+            vetUser  = userRN.pesquisar(txtNomeUsuario.getText());
+
+            emp = new Emprestimo(vetUser.firstElement(), vetLivro.firstElement());
+
+            emp.setIndDevolvido("N");
             
+            new EmprestimoRN().salvar(emp);
+            
+            System.out.println("Emprestimo efetuado = " + emp.toString());
+        JOptionPane.showMessageDialog(this, "Emprestimo efetuado com sucesso - Sistema Biblioteca ROS");
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Emprestimo não efetuado!- Erro - Sistema Biblioteca ROS");
         }
-        
+
     }//GEN-LAST:event_txtEmprestarActionPerformed
 
     private void txtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCancelarActionPerformed
