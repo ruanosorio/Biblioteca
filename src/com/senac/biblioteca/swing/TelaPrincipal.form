@@ -89,6 +89,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Novo Empr&#xe9;stimo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemMenuNovoEmprestimoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuDevolucaoEmprestimo">
               <Properties>

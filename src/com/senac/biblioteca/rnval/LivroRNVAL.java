@@ -14,7 +14,6 @@ public class LivroRNVAL extends ValidacaoRNException{
         throw new UnsupportedOperationException("Ops. Livro não encontrado!"); //To change body of generated methods, choose Tools | Templates.
     
     }
-
-    
+   
     
 }

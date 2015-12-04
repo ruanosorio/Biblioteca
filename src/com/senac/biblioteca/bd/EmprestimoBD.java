@@ -237,7 +237,7 @@ public class EmprestimoBD {
             
             PreparedStatement pstm = conn.prepareStatement(sql);
             
-             log.error("Erro em: "+sql);
+           //  log.error("Erro em: "+sql);
             
             ResultSet rs = pstm.executeQuery();
             

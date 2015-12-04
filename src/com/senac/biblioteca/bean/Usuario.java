@@ -13,6 +13,7 @@ import java.util.Objects;
  */
 public class Usuario {
     
+    @Resolvable(colName = "Id do Usuário")
     private Integer id;
     @Resolvable(colName = "Matrícula")
     private int matricula;

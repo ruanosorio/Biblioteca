@@ -159,7 +159,7 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel7)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jcomboCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDadosCadastraisLayout.setVerticalGroup(
             jPanelDadosCadastraisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,13 +210,13 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalvar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCancelar)
-                .addGap(35, 35, 35))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelDadosCadastrais, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(464, 464, 464)
+                        .addComponent(btnCancelar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addComponent(jPanelDadosCadastrais, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -228,7 +228,7 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
                     .addComponent(btnSalvar))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -259,6 +259,9 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                 String mensagem = book.getId() == null ? "Livro incluído com sucesso!" : "Livro alterado com sucesso!";
                 bookRN.salvar(book);
                 JOptionPane.showMessageDialog(this, mensagem, "Cadastro Livro - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
+                
+                //adicionou saio
+                this.dispose();
             }
             
             if (gerenciarLivros != null) {

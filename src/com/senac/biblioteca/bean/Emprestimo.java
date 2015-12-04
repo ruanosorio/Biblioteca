@@ -14,13 +14,13 @@ import java.util.Objects;
 public class Emprestimo {
 
     private int id;
-    @Resolvable(colName = "Nome do Usuário")
+    @Resolvable(colName = "Nome do usuário")
     private Usuario usuario;
     @Resolvable(colName = "Livro")
     private Livro livro;
-    @Resolvable(colName = "Data do Empréstimo")
+    @Resolvable(colName = "Data do empréstimo")
     private Date dtEmprestimo;
-    @Resolvable(colName = "Data de Devolução")
+    @Resolvable(colName = "Data de devolução")
     private Date dtDevolucao;
     @Resolvable(colName = "Devolvido")
     private String indDevolvido;
@@ -162,11 +162,11 @@ public class Emprestimo {
 
     @Override
     public String toString() {
-        return "Livros Emprestados \n "
+        return "\n Livros Emprestados \n "
                 + "Nome do Usuario = " + usuario.getNome() + " \n "
                 + "Nome do Livro = " + livro.getTitulo() + " \n "
                 + "Data de Emprestimo = " + dtEmprestimo
-                + " "
+                + " | - | "
                 + "Data de Devolução = " + dtDevolucao;
     }
 

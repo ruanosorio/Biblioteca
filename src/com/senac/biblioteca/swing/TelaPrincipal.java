@@ -136,6 +136,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuEmprestimo.setText("Empréstimos");
 
         itemMenuNovoEmprestimo.setText("Novo Empréstimo");
+        itemMenuNovoEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuNovoEmprestimoActionPerformed(evt);
+            }
+        });
         menuEmprestimo.add(itemMenuNovoEmprestimo);
 
         itemMenuDevolucaoEmprestimo.setText("Devolução ");
@@ -245,6 +250,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         UtilTela.abreTela(this, new Emprestimos(this));
     }//GEN-LAST:event_itemMenuEmprestimosActionPerformed
+
+    private void itemMenuNovoEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuNovoEmprestimoActionPerformed
+        // TODO add your handling code here:
+        UtilTela.abreTela(this, new NovoEmprestimo(this));
+    }//GEN-LAST:event_itemMenuNovoEmprestimoActionPerformed
 
     
     public void moveToFront(JInternalFrame jif){

@@ -38,7 +38,7 @@ public class GerenciarLivros extends javax.swing.JInternalFrame {
             lista = new LivroRN().listaLivro();
 
             AnnotationResolver resolver2 = new AnnotationResolver(Livro.class);
-            ObjectTableModel<Livro> tableModel2 = new ObjectTableModel<Livro>(resolver2, "titulo,autor,isbn,ano,descricao");
+            ObjectTableModel<Livro> tableModel2 = new ObjectTableModel<Livro>(resolver2, "id,titulo,autor,isbn,ano,descricao");
             tableModel2.setData(lista);
             tbGerenciarLivros.getTableHeader().setReorderingAllowed(false);
             tbGerenciarLivros.setModel(tableModel2);

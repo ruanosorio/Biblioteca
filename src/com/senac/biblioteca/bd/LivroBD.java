@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import org.apache.log4j.Logger;
 
 /**
@@ -95,7 +96,7 @@ public class LivroBD {
             pstm.setInt(8, p_livro.getId());
 
             pstm.executeUpdate();
-            
+
             log.info("Livro editado!");
 
         } catch (Exception e) {
@@ -139,7 +140,10 @@ public class LivroBD {
                 livro.setIsbn(rs.getString("isbn"));
                 livro.setAno(rs.getInt("ano"));
                 //livro.setEditora(rs.getInt("id"));
-                //livro.setCategoria(rs.getInt("id"));                
+
+                cat.setId(rs.getInt("id_categoria"));
+                livro.setCategoria(cat);
+
                 livro.setDescricao(rs.getString("descricao"));
 
                 lista.add(livro);
@@ -181,4 +185,52 @@ public class LivroBD {
         }
     }
 
+    public Vector<Livro> pesquisar(String text) throws SQLException {
+        //Carregar combo passando um vetor de categoria
+        Vector<Livro> dados = new Vector<Livro>();
+
+        // definição do SQL com base nos dados informados para pesquisa
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT *  ");
+        sql.append("FROM livro  ");
+        sql.append("WHERE ");
+        sql.append("id = ? ");
+
+        Connection conn = null;
+        try {
+
+            conn = ConexaoBD.getConexao();
+
+            PreparedStatement pstm = conn.prepareStatement(sql.toString());
+            pstm.setString(1, text);
+            //  pstm.setString(2, "%" + text + "%");
+            // pstm.setString(3, "%" + text + "%");
+            //  pstm.setString(4, "%" + text + "%");
+            log.info(pstm);
+            log.debug("Pesquisando: " + text);
+
+            ResultSet rs = pstm.executeQuery();
+
+            while (rs.next()) {
+
+                Livro book = new Livro();
+                book.setId(rs.getInt("id"));
+                book.setTitulo(rs.getString("titulo"));
+                book.setAutor("autor");
+
+                log.debug("Registro encontrado");
+
+                dados.add(book);
+            }
+            log.debug("Pesquisa executada com sucesso");
+            return dados;
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+            }
+        }
+    }
 }

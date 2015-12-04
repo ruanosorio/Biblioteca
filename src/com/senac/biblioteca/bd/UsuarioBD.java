@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 import org.apache.log4j.Logger;
 
 /**
@@ -162,5 +163,58 @@ public class UsuarioBD {
             }
         }
     }
-    
+
+    public Vector<Usuario> pesquisar(String text)throws SQLException {
+        //Carregar combo passando um vetor de categoria
+        Vector<Usuario> dados = new Vector<Usuario>();
+
+        
+        // definição do SQL com base nos dados informados para pesquisa
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT *  ");
+        sql.append("FROM usuario  ");
+        sql.append("WHERE ");
+        sql.append("id = ? ");
+        //sql.append("OR nome = ? ");
+        //sql.append("OR matricula like ? ");
+       //sql.append("OR email like ? ");
+        
+        Connection conn = null;
+        try {
+
+            conn = ConexaoBD.getConexao();
+            
+            PreparedStatement pstm = conn.prepareStatement(sql.toString());
+            pstm.setString(1, text);
+          //  pstm.setString(2, "%" + text + "%");
+           // pstm.setString(3, "%" + text + "%");
+          //  pstm.setString(4, "%" + text + "%");
+            log.info(pstm);
+            log.debug("Pesquisando: " + text);            
+            
+            ResultSet rs = pstm.executeQuery();
+           
+            while (rs.next()) {
+
+                Usuario user = new Usuario();
+                user.setId(rs.getInt("id"));
+                user.setNome(rs.getString("nome"));
+                user.setMatricula(rs.getInt("matricula"));                
+                
+                log.debug("Registro encontrado");
+                
+                dados.add(user);                
+            }
+            log.debug("Pesquisa executada com sucesso");
+            return dados;
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+            }
+        }
+    }
+
 }
