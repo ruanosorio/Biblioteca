@@ -56,7 +56,7 @@ public class EmprestimoBD {
 
             log.info("ID criado = " + emprestimo.getId());
         } catch (Exception e) {
-            log.error("Erro ao tentar inserir emprestimo");
+            log.error("Erro ao tentar inserir emprestimo!");
             throw new RuntimeException(e);
         } finally {
             if (conn != null) {
@@ -67,7 +67,7 @@ public class EmprestimoBD {
             }
         }
     }
-
+  
     public void devolucao(Emprestimo emprestimo) {
         Connection conn = null;
         try {
@@ -85,10 +85,10 @@ public class EmprestimoBD {
             pstm.setInt(2, emprestimo.getId());
 
             pstm.executeUpdate();
-            log.info("Emprestimo inserido no banco de dados");
+            log.info("Devolução inserida no banco de dados");
 
         } catch (Exception e) {
-            log.error("Erro, ao tentar efetuar o emprestimo do livro!");
+            log.error("Erro, ao tentar efetuar a devolução do livro!");
             throw new RuntimeException(e);
         } finally {
             if (conn != null) {

@@ -23,7 +23,12 @@ public class Usuario {
     private String telefone;
     private List<Emprestimo> emprestimoItems = new ArrayList<>();
     //private List<Emprestimo> emprestimoItems = new ArrayList<Emprestimo>();
-
+  
+    private String CPF;  
+    private String sexo;
+    private String email;
+    private String user;
+    private String pass;
     /**
      * **************************CONSTRUTORES****************************
      */
@@ -90,7 +95,46 @@ public class Usuario {
         this.telefone = telefone;
     }
 
+    public String getCPF() {
+        return CPF;
+    }
 
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+           
 
     public List<Emprestimo> getEmprestimosItems() {
         return this.emprestimoItems;

@@ -13,6 +13,7 @@ import java.util.Objects;
  */
 public class Emprestimo {
 
+    @Resolvable(colName = "Id do empréstimo")
     private int id;
     @Resolvable(colName = "Nome do usuário")
     private Usuario usuario;
@@ -24,6 +25,8 @@ public class Emprestimo {
     private Date dtDevolucao;
     @Resolvable(colName = "Devolvido")
     private String indDevolvido;
+    
+    private int val1, val2;
 
     /**
      * **************************CONSTRUTORES****************************
@@ -45,6 +48,7 @@ public class Emprestimo {
     // 7 Dias em milisegundos
     //static final int DIAS_EMPRESTIMO = 60 * 60 * 24 * 7 * 1000;
     public Emprestimo(Usuario p_usuario, Livro p_livro) {
+      
         this.livro = p_livro;
         this.usuario = p_usuario;
         dtEmprestimo = new Date(System.currentTimeMillis());
@@ -57,7 +61,7 @@ public class Emprestimo {
 
         dtDevolucao = new Date(calIni.getTimeInMillis());
     }
-
+   
     /**
      * **************************GETS e SETS****************************
      */
@@ -128,6 +132,25 @@ public class Emprestimo {
     public void setIndDevolvido(String indDevolvido) {
         this.indDevolvido = indDevolvido;
     }
+
+    public int getVal1() {
+        return val1;
+    }
+
+    public void setVal1(int val1) {
+        this.val1 = val1;
+    }
+
+    public int getVal2() {
+        return val2;
+    }
+
+    public void setVal2(int val2) {
+        this.val2 = val2;
+    }
+    
+    
+    
 
     @Override
     public int hashCode() {

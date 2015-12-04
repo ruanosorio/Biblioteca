@@ -39,4 +39,9 @@ public class EmprestimoRN {
     public List<Emprestimo> listaEmprestimos(){
         return bd.listaEmprestimos();
     }
+    
+//    public void emprestar(int p_val1, int p_val2){
+//        bd.emprestar(p_val1, p_val2);
+//    }
+    
 }

@@ -11,11 +11,20 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuImprimir">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F2"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Imprimir"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemMenuImprimirActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuSair">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Sair"/>
               </Properties>
               <Events>
@@ -33,6 +42,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuCadastrarUsuario">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F3"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cadastrar Usu&#xe1;rio"/>
               </Properties>
               <Events>
@@ -41,6 +53,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuGerenciarUsuarios">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F4"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Gerenciar Usu&#xe1;rios"/>
               </Properties>
               <Events>
@@ -56,6 +71,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuCadastrarLivros">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F5"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cadastrar Livro"/>
               </Properties>
               <Events>
@@ -64,6 +82,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuCadastrarCategoria">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F6"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Cadastrar Categoria"/>
               </Properties>
               <Events>
@@ -72,6 +93,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuGerenciarLivros">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F7"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Gerenciar Livros"/>
               </Properties>
               <Events>
@@ -87,6 +111,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuNovoEmprestimo">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F7"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Novo Empr&#xe9;stimo"/>
               </Properties>
               <Events>
@@ -95,11 +122,20 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuDevolucaoEmprestimo">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F9"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Devolu&#xe7;&#xe3;o "/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemMenuDevolucaoEmprestimoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuEmprestimos">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F10"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Empr&#xe9;stimos"/>
               </Properties>
               <Events>
@@ -115,6 +151,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuSobre">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="F11"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Sobre"/>
               </Properties>
               <Events>

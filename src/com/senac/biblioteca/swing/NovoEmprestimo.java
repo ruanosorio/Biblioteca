@@ -218,42 +218,55 @@ public class NovoEmprestimo extends javax.swing.JInternalFrame {
     private void btnPesquisarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarUsuarioActionPerformed
         // Pesquisar Usuário
         try {
-            vetUser = userRN.pesquisar(txtPesqUsuario.getText());
-            txtNomeUsuario.setText(vetUser.toString());
+            if (!txtPesqUsuario.getText().isEmpty()) {
+                vetUser = userRN.pesquisar(txtPesqUsuario.getText());
+                txtNomeUsuario.setText(vetUser.toString());
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this, "Pesquisa não efetuda!"
+                    + "\nPor favor, insira o id do usuário.", "Erro - Sistema Biblioteca ROS", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnPesquisarUsuarioActionPerformed
 
     private void btnPesquisarLivroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarLivroActionPerformed
         // Pesquisar livro
-        try {
-            vetLivro = bookRN.pesquisar(txtPesqLivro.getText());
-            txtTituloLivro.setText(vetLivro.toString());
-            
+        try {           
+                      
+            if (!txtPesqLivro.getText().isEmpty()) {
+                vetLivro = bookRN.pesquisar(txtPesqLivro.getText());
+                txtTituloLivro.setText(vetLivro.toString());
+//                JOptionPane.showMessageDialog(this, "Devolução efetuada com sucesso!", "Devolução de Emprestimos - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
+            }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage());
+            JOptionPane.showMessageDialog(this, "Pesquisa não efetuda!"
+                    + "\nPor favor, insira o id do livro.", "Erro - Sistema Biblioteca ROS", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnPesquisarLivroActionPerformed
 
     private void txtEmprestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmprestarActionPerformed
         // TODO add your handling code here:
+        Usuario user = new Usuario();
+        Livro book = new Livro();
 
         try {
-            vetLivro = bookRN.pesquisar(txtTituloLivro.getText());
-            vetUser  = userRN.pesquisar(txtNomeUsuario.getText());
 
-            emp = new Emprestimo(vetUser.firstElement(), vetLivro.firstElement());
+            user.setId(Integer.parseInt(txtPesqUsuario.getText()));
+            book.setId(Integer.parseInt(txtPesqLivro.getText()));
 
+            Emprestimo emp = new Emprestimo(user, book);
             emp.setIndDevolvido("N");
-            
+
             new EmprestimoRN().salvar(emp);
-            
+
             System.out.println("Emprestimo efetuado = " + emp.toString());
-        JOptionPane.showMessageDialog(this, "Emprestimo efetuado com sucesso - Sistema Biblioteca ROS");
+            JOptionPane.showMessageDialog(this, "Emprestimo efetuado com sucesso - Sistema Biblioteca ROS");
+
+            this.dispose();
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Emprestimo não efetuado!- Erro - Sistema Biblioteca ROS");
+            JOptionPane.showMessageDialog(this, "Emprestimo não efetuado!"
+                    + "\n Por favor, preencha os dados.", "Erro - Sistema Biblioteca ROS", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_txtEmprestarActionPerformed

@@ -35,7 +35,7 @@ public class Emprestimos extends javax.swing.JInternalFrame {
             lista = new EmprestimoRN().listaEmprestimos();
             
             AnnotationResolver resolver = new AnnotationResolver(Emprestimo.class);
-            ObjectTableModel<Emprestimo> tableModel2 = new ObjectTableModel<Emprestimo>(resolver, "usuario,livro,dtEmprestimo,dtDevolucao,indDevolvido");
+            ObjectTableModel<Emprestimo> tableModel2 = new ObjectTableModel<Emprestimo>(resolver, "id,usuario,livro,dtEmprestimo,dtDevolucao,indDevolvido");
             tableModel2.setData(lista);
             tbEmprestimos.getTableHeader().setReorderingAllowed(false);
             tbEmprestimos.setModel(tableModel2);

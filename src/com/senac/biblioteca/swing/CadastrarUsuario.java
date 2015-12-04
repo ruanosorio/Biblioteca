@@ -78,7 +78,7 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
 
         txtMatricula.setToolTipText("Informe a matrícula do usuário");
 
-        lblTelefone.setText("Telefone*:");
+        lblTelefone.setText("Telefone:");
 
         txtTelefone.setToolTipText("Informe o telefone do usuário");
 
@@ -256,12 +256,17 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
             user.setMatricula(Integer.parseInt(txtMatricula.getText()));
             user.setNome(txtNome.getText());
             user.setTelefone(txtTelefone.getText());
+            user.setCPF(txtCpf.getText());
+           // user.setSexo(String.valueOf(jComboSexo.getSelectedIndex()));
+            user.setEmail(txtEmail.getText());
+            user.setUser(txtUsuario.getText());
+            user.setPass(txtSenha.getText());
 
             UsuarioRN userRN = new UsuarioRN();
 
             if (!txtMatricula.getText().isEmpty() && !txtNome.getText().isEmpty()) {
                 userRN.salvar(user);
-                String mensagem = user.getId() == null ? "Usuário incluído com sucesso!" : "Usuário alterado com sucesso!";
+                String mensagem = user.getId() == null ? "Usuário íncluído com sucesso!" : "Usuário alterado com sucesso!";
                 JOptionPane.showMessageDialog(this, mensagem, "Cadastro Usuário - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
                 
                 //adicionou saio

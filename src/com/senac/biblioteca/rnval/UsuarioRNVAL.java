@@ -10,7 +10,7 @@ public class UsuarioRNVAL extends ValidacaoRNException {
 
     public UsuarioRNVAL(String msg) {
         
-        throw new UnsupportedOperationException("Ops. Usuário não encontrado");
+        throw new UnsupportedOperationException("Ops, Usuário não encontrado!");
         
     }   
     

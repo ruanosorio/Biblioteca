@@ -5,11 +5,17 @@
  */
 package com.senac.biblioteca.swing;
 
+import com.senac.biblioteca.bean.Emprestimo;
 import com.senac.biblioteca.bean.Livro;
 import com.senac.biblioteca.infra.UtilTela;
+import com.senac.biblioteca.rn.EmprestimoRN;
 import static java.awt.image.ImageObserver.WIDTH;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -23,7 +29,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     public TelaPrincipal() {
         initComponents();
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,9 +69,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuArquivo.setText("Arquivo");
 
+        itemMenuImprimir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F2, 0));
         itemMenuImprimir.setText("Imprimir");
+        itemMenuImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuImprimirActionPerformed(evt);
+            }
+        });
         menuArquivo.add(itemMenuImprimir);
 
+        itemMenuSair.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
         itemMenuSair.setText("Sair");
         itemMenuSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -87,6 +99,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuUsuarios.setText("Gerenciar Usuários");
 
+        itemMenuCadastrarUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F3, 0));
         itemMenuCadastrarUsuario.setText("Cadastrar Usuário");
         itemMenuCadastrarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +108,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuUsuarios.add(itemMenuCadastrarUsuario);
 
+        itemMenuGerenciarUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
         itemMenuGerenciarUsuarios.setText("Gerenciar Usuários");
         itemMenuGerenciarUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +121,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuLivros.setText("Gerenciars Livros");
 
+        itemMenuCadastrarLivros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         itemMenuCadastrarLivros.setText("Cadastrar Livro");
         itemMenuCadastrarLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +130,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuLivros.add(itemMenuCadastrarLivros);
 
+        itemMenuCadastrarCategoria.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
         itemMenuCadastrarCategoria.setText("Cadastrar Categoria");
         itemMenuCadastrarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +139,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuLivros.add(itemMenuCadastrarCategoria);
 
+        itemMenuGerenciarLivros.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         itemMenuGerenciarLivros.setText("Gerenciar Livros");
         itemMenuGerenciarLivros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,6 +152,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuEmprestimo.setText("Empréstimos");
 
+        itemMenuNovoEmprestimo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
         itemMenuNovoEmprestimo.setText("Novo Empréstimo");
         itemMenuNovoEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,9 +161,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuEmprestimo.add(itemMenuNovoEmprestimo);
 
+        itemMenuDevolucaoEmprestimo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
         itemMenuDevolucaoEmprestimo.setText("Devolução ");
+        itemMenuDevolucaoEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMenuDevolucaoEmprestimoActionPerformed(evt);
+            }
+        });
         menuEmprestimo.add(itemMenuDevolucaoEmprestimo);
 
+        itemMenuEmprestimos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F10, 0));
         itemMenuEmprestimos.setText("Empréstimos");
         itemMenuEmprestimos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,6 +183,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuAjuda.setText("Ajuda");
 
+        itemMenuSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F11, 0));
         itemMenuSobre.setText("Sobre");
         itemMenuSobre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,20 +210,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuSairMouseClicked
         //Ao clicar no botão, dispara o evento de sair da aplicação.           
-         System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_menuSairMouseClicked
 
     private void itemMenuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemMenuSairMouseClicked
-     
+
     }//GEN-LAST:event_itemMenuSairMouseClicked
 
     private void itemMenuSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemMenuSairMouseExited
-        
+
     }//GEN-LAST:event_itemMenuSairMouseExited
 
     private void itemMenuSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuSairActionPerformed
         // Usuário clica em YES para finalizar a aplicação:
-       if(JOptionPane.showConfirmDialog(this, "Deseja realmente sair?", "Sair - Sistema Biblioteca ROS", WIDTH, 3) == 0){
+        if (JOptionPane.showConfirmDialog(this, "Deseja realmente sair?", "Sair - Sistema Biblioteca ROS", WIDTH, 3) == 0) {
             System.exit(0);
         }
     }//GEN-LAST:event_itemMenuSairActionPerformed
@@ -216,18 +242,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemMenuCadastrarUsuarioActionPerformed
 
     private void itemMenuCadastrarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuCadastrarLivrosActionPerformed
-            // TODO add your handling code here:
+        // TODO add your handling code here:
 
         UtilTela.abreTela(this, new CadastrarLivro());
     }//GEN-LAST:event_itemMenuCadastrarLivrosActionPerformed
 
-    public void adicionaJIF(JInternalFrame jif){
+    public void adicionaJIF(JInternalFrame jif) {
         desktopPanePrincipal.add(jif);
     }
 
-    
+
     private void itemMenuGerenciarLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuGerenciarLivrosActionPerformed
-        
+
         UtilTela.abreTela(this, new GerenciarLivros(this));
     }//GEN-LAST:event_itemMenuGerenciarLivrosActionPerformed
 
@@ -239,7 +265,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void itemMenuGerenciarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuGerenciarUsuariosActionPerformed
         // TODO add your handling code here:
-        
+
 //        GerenciarUsuarios gerenciar = new GerenciarUsuarios(this);
 //        desktopPanePrincipal.add(gerenciar);
 //        gerenciar.setVisible(true);
@@ -256,10 +282,46 @@ public class TelaPrincipal extends javax.swing.JFrame {
         UtilTela.abreTela(this, new NovoEmprestimo(this));
     }//GEN-LAST:event_itemMenuNovoEmprestimoActionPerformed
 
-    
-    public void moveToFront(JInternalFrame jif){
-        desktopPanePrincipal.moveToFront(jif);        
+    private void itemMenuDevolucaoEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuDevolucaoEmprestimoActionPerformed
+        // TODO add your handling code here:
+        UtilTela.abreTela(this, new Devolucao(this));
+    }//GEN-LAST:event_itemMenuDevolucaoEmprestimoActionPerformed
+
+    private void itemMenuImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuImprimirActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            EmprestimoRN empRN = new EmprestimoRN();
+            List<Emprestimo> listaEmprestimo = empRN.listaEmprestimos();
+
+            StringBuilder saidaCSV = new StringBuilder();
+            // cabeçalho
+            saidaCSV.append("CODIGO;USUARIO;LIVRO;DATA_EMPRESTIMO;DATA_DEVOLUCAO;DEVOLVIDO").append("\r\n");
+
+            // conteúdo do relatório
+            for (Emprestimo emp : listaEmprestimo) {
+                saidaCSV.append(emp.getId()).append(";");
+                saidaCSV.append(emp.getUsuario().getNome()).append(";");
+                saidaCSV.append(emp.getLivro().getTitulo()).append(";");
+                saidaCSV.append(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(emp.getDtEmprestimo())).append(";");
+                saidaCSV.append(new SimpleDateFormat("dd/MM/yyyy HH:mm").format(emp.getDtDevolucao())).append(";");
+                saidaCSV.append(emp.getIndDevolvido()).append(";");
+
+                saidaCSV.append("\r\n");
+            }
+            FileUtils.writeStringToFile(new File("relatorio.csv"), saidaCSV.toString());
+
+            JOptionPane.showMessageDialog(this, "Relatório gerado com sucesso!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+
+    }//GEN-LAST:event_itemMenuImprimirActionPerformed
+
+    public void moveToFront(JInternalFrame jif) {
+        desktopPanePrincipal.moveToFront(jif);
     }
+
     /**
      * @param args the command line arguments
      */
@@ -274,16 +336,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaPrincipal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

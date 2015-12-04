@@ -31,14 +31,19 @@ public class UsuarioBD {
             log.info("Abrindo conexão com o banco");
 
             conn = ConexaoBD.getConexao();
-            PreparedStatement pstm = conn.prepareStatement("INSERT INTO usuario (matricula, nome, telefone) VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pstm = conn.prepareStatement("INSERT INTO usuario (matricula, nome, telefone, cpf, sexo, email, usuario, senha) VALUES (?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
             // pstm.setInt(1, p_usuario.getId());
             pstm.setInt(1, p_usuario.getMatricula());
             pstm.setString(2, p_usuario.getNome());
             pstm.setString(3, p_usuario.getTelefone());
+            pstm.setString(4, p_usuario.getCPF());
+            pstm.setString(5, p_usuario.getSexo());
+            pstm.setString(6, p_usuario.getEmail());
+            pstm.setString(7, p_usuario.getUser());
+            pstm.setString(8, p_usuario.getPass());
 
             log.info("Inserindo Usuário no banco de dados");
-
+            System.out.println(pstm);
             pstm.executeUpdate();
             Long id = ConexaoBD.getLastKey(pstm);
             p_usuario.setId(id == null ? null : id.intValue());
@@ -77,13 +82,24 @@ public class UsuarioBD {
                     + "update usuario set "
                      + "matricula = ? ,"
                     + "nome = ? ,"
-                    + "telefone = ? "                  
+                    + "telefone = ? ,"
+                    + "cpf = ? ,"
+                    + "sexo = ? ,"
+                    + "email = ? ,"
+                    + "usuario = ? ,"
+                    + "senha = ? "                     
                     + "where id = ?");
             
             pstm.setInt(1,p_usuario.getMatricula());
             pstm.setString(2,p_usuario.getNome());
             pstm.setString(3,p_usuario.getTelefone());          
-            pstm.setInt(4, p_usuario.getId());
+            pstm.setString(4, p_usuario.getCPF());
+            pstm.setString(5, p_usuario.getSexo());
+            pstm.setString(6, p_usuario.getEmail());
+            pstm.setString(7, p_usuario.getUser());
+            pstm.setString(8, p_usuario.getPass());
+            pstm.setInt(9, p_usuario.getId());
+            
             
             log.info("Usuario editado!");
 
@@ -125,6 +141,11 @@ public class UsuarioBD {
                 usuarios.setMatricula(rs.getInt("matricula"));
                 usuarios.setNome(rs.getString("nome"));
                 usuarios.setTelefone(rs.getString("telefone"));
+                usuarios.setCPF(rs.getString("cpf"));
+                usuarios.setSexo(rs.getString("sexo"));
+                usuarios.setEmail(rs.getString("email"));
+                usuarios.setUser(rs.getString("usuario"));
+                usuarios.setPass(rs.getString("senha"));
 
                 lista.add(usuarios);
 

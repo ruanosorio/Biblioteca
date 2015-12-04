@@ -5,17 +5,39 @@
  */
 package com.senac.biblioteca.swing;
 
+import com.senac.biblioteca.bean.Emprestimo;
+import com.senac.biblioteca.bean.Livro;
+import com.senac.biblioteca.bean.Usuario;
+import com.senac.biblioteca.infra.UtilTela;
+import com.senac.biblioteca.rn.EmprestimoRN;
+import com.senac.biblioteca.rn.LivroRN;
+import com.senac.biblioteca.rn.UsuarioRN;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ruan Osorio
  */
 public class Devolucao extends javax.swing.JInternalFrame {
 
+    TelaPrincipal telaPrincipal;
+    Emprestimos telaEmprestimo;
+
+    UsuarioRN userRN = new UsuarioRN();
+    LivroRN bookRN = new LivroRN();
+    private Vector<Usuario> vetUser;
+    private Vector<Livro> vetLivro;
+    private Vector<Emprestimo> vetEmp;
+    Emprestimo emp = new Emprestimo();
+    EmprestimoRN empRN = new EmprestimoRN();
+
     /**
      * Creates new form Devolucao
      */
-    public Devolucao() {
+    public Devolucao(TelaPrincipal p_tela) {
         initComponents();
+        telaPrincipal = p_tela;
     }
 
     /**
@@ -35,9 +57,12 @@ public class Devolucao extends javax.swing.JInternalFrame {
         txtDevolver = new javax.swing.JButton();
         txtCancelar = new javax.swing.JButton();
         jPanelPesquisa = new javax.swing.JPanel();
-        txtPesqUsuario = new javax.swing.JTextField();
+        txtPesqEmprestimo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        btnPesquisarUsuario = new javax.swing.JButton();
+        btnPesqEmprestimo = new javax.swing.JButton();
+
+        setClosable(true);
+        setTitle("Devolução de Empréstimo - Sistema Biblioteca ROS");
 
         jPanelEmprestimo.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados do Empréstimo"));
         jPanelEmprestimo.setToolTipText("");
@@ -51,8 +76,18 @@ public class Devolucao extends javax.swing.JInternalFrame {
         txtNomeUsuario.setEnabled(false);
 
         txtDevolver.setText("Devolver");
+        txtDevolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDevolverActionPerformed(evt);
+            }
+        });
 
         txtCancelar.setText("Cancelar");
+        txtCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelEmprestimoLayout = new javax.swing.GroupLayout(jPanelEmprestimo);
         jPanelEmprestimo.setLayout(jPanelEmprestimoLayout);
@@ -68,7 +103,7 @@ public class Devolucao extends javax.swing.JInternalFrame {
                     .addGroup(jPanelEmprestimoLayout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNomeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
+                        .addComponent(txtNomeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEmprestimoLayout.createSequentialGroup()
                         .addComponent(txtCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -96,12 +131,12 @@ public class Devolucao extends javax.swing.JInternalFrame {
 
         jPanelPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados de Pesquisa"));
 
-        jLabel2.setText("Usuário:");
+        jLabel2.setText("Id Emprestimo:");
 
-        btnPesquisarUsuario.setText("Pesquisar Usuário");
-        btnPesquisarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        btnPesqEmprestimo.setText("Pesquisar Emprestimo");
+        btnPesqEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarUsuarioActionPerformed(evt);
+                btnPesqEmprestimoActionPerformed(evt);
             }
         });
 
@@ -110,23 +145,22 @@ public class Devolucao extends javax.swing.JInternalFrame {
         jPanelPesquisaLayout.setHorizontalGroup(
             jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPesquisaLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(7, 7, 7)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPesqUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnPesquisarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addComponent(txtPesqEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPesqEmprestimo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelPesquisaLayout.setVerticalGroup(
             jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPesquisaLayout.createSequentialGroup()
                 .addGap(0, 6, Short.MAX_VALUE)
-                .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtPesqUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnPesquisarUsuario)))
+                .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPesqEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesqEmprestimo)
+                    .addComponent(jLabel2))
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
@@ -137,15 +171,16 @@ public class Devolucao extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelEmprestimo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelPesquisa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanelEmprestimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanelPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanelPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jPanelEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -153,17 +188,39 @@ public class Devolucao extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPesquisarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarUsuarioActionPerformed
-        // Pesquisar Usuário
+    private void btnPesqEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesqEmprestimoActionPerformed
+
+        // Pesquisar Emprestimo
+        JOptionPane.showMessageDialog(this, "Ops, Metodo do Botão não criado!", "Devolução de Emprestimos - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
+
+    }//GEN-LAST:event_btnPesqEmprestimoActionPerformed
+
+    private void txtDevolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDevolverActionPerformed
+        // TODO add your handling code here:
+
         try {
-           
+            emp.setId(Integer.parseInt(txtPesqEmprestimo.getText()));
+            if (!txtPesqEmprestimo.getText().isEmpty()) {
+                empRN.devolucao(emp);
+                JOptionPane.showMessageDialog(this, "Devolução efetuada com sucesso!", "Devolução de Emprestimos - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();                
+            }            
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Devolução não efetuada!"
+                    + "\nPor favor, insira o id do empréstimo.", "Erro - Sistema Biblioteca ROS", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btnPesquisarUsuarioActionPerformed
+
+
+    }//GEN-LAST:event_txtDevolverActionPerformed
+
+    private void txtCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCancelarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_txtCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnPesquisarUsuario;
+    private javax.swing.JButton btnPesqEmprestimo;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -172,7 +229,7 @@ public class Devolucao extends javax.swing.JInternalFrame {
     private javax.swing.JButton txtCancelar;
     private javax.swing.JButton txtDevolver;
     private javax.swing.JTextField txtNomeUsuario;
-    private javax.swing.JTextField txtPesqUsuario;
+    private javax.swing.JTextField txtPesqEmprestimo;
     private javax.swing.JTextField txtTituloLivro;
     // End of variables declaration//GEN-END:variables
 }
