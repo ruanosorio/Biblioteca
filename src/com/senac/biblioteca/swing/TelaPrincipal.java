@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import org.apache.commons.io.FileUtils;
+//import org.apache.commons.io.FileUtils;
 
 /**
  *
@@ -309,7 +309,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
                 saidaCSV.append("\r\n");
             }
-            FileUtils.writeStringToFile(new File("relatorio.csv"), saidaCSV.toString());
+//            FileUtils.writeStringToFile(new File("relatorio.csv"), saidaCSV.toString());
 
             JOptionPane.showMessageDialog(this, "Relatório gerado com sucesso!");
         } catch (Exception e) {

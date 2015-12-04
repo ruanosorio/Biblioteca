@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 04, 2015 at 07:51 PM
+-- Generation Time: Dec 04, 2015 at 08:15 PM
 -- Server version: 5.6.13
 -- PHP Version: 5.4.17
 
@@ -152,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `livro` (
   `id_categoria` int(11) DEFAULT NULL,
   `descricao` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `livro`
@@ -165,7 +165,8 @@ INSERT INTO `livro` (`id`, `titulo`, `autor`, `isbn`, `ano`, `id_editora`, `id_c
 (4, 'Aprenda PHP 5', 'TESTE ', '4561654415', 2012, NULL, 28, 'Aprenda PHP 5'),
 (5, 'Qualqwer', 'Seu ', '121451545', 2015, 0, 0, ' JAVA'),
 (6, 'teste livro categoria', 'Ruan', '15237436653', 0, NULL, 1, 'Testando a combo categoria O fim da jornada é compreender o que significa trazer inteligência à emoção O fim da jornada é compreender o que significa trazer inteligência à emoção'),
-(7, 'Oracle Developer', 'Oracle JR', '20150103', 2014, 0, 28, 'Oracle mysql, sql, crm...');
+(7, 'Oracle Developer', 'Oracle JR', '20150103', 2014, 0, 28, 'Oracle mysql, sql, crm...'),
+(8, 'Livro ', 'eu', '1223985hjhdugh', 2015, 0, 5, 'fddfgdgdg');
 
 -- --------------------------------------------------------
 
@@ -197,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `usuario` varchar(100) DEFAULT NULL,
   `senha` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `usuario`
@@ -218,7 +219,9 @@ INSERT INTO `usuario` (`id`, `matricula`, `nome`, `telefone`, `cpf`, `sexo`, `em
 (12, 18727, 'teste usuário', '842378937', '', '', '', '', ''),
 (13, 201545, 'testecadastro', '1234456', '111.111.111-11', '0', '', '', ''),
 (14, 12122, 'user', '12223', '111.111.111-11', '1', 'u', '111111111', '5555555'),
-(15, 174604, 'MVP', '99999999999', '   .   .   -  ', NULL, '', '', '');
+(15, 174604, 'MVP', '99999999999', '   .   .   -  ', NULL, '', '', ''),
+(16, 2323, 'testex', '43264625552', '   .   .   -  ', NULL, '', '', ''),
+(17, 123456, 'testetestetetetetettsttsts', '20927466', '111.111.111-11', NULL, 'testetesttetet@jdh.com', 'teste@ht.com', '1234');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

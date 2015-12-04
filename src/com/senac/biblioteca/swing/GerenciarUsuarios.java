@@ -101,7 +101,7 @@ public class GerenciarUsuarios extends javax.swing.JInternalFrame {
 //            CadastrarUsuario cadastrar = new CadastrarUsuario(usuario);
 //            telaPrincipal.adicionaJIF(cadastrar);
 //            cadastrar.setVisible(true);
-            UtilTela.abreTela(telaPrincipal, new CadastrarUsuario(usuario,this));
+            UtilTela.abreTela(telaPrincipal, new CadastrarUsuario(usuario,this));            
         }
         
     }//GEN-LAST:event_tbGerenciarUsuariosMouseClicked

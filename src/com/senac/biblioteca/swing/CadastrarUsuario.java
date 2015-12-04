@@ -28,8 +28,13 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
 
         txtNome.setText(p_usuario.getNome());
         txtMatricula.setText(String.valueOf(p_usuario.getMatricula()));
-        txtTelefone.setText(p_usuario.getTelefone());
-
+        txtTelefone.setText(p_usuario.getTelefone());        
+        txtEmail.setText(p_usuario.getEmail());
+        txtCpf.setText(p_usuario.getCPF());
+        jComboSexo.addItem(p_usuario.getSexo());
+        txtUsuario.setText(p_usuario.getUser());
+        txtSenha.setText(p_usuario.getPass());
+        
         id = p_usuario.getId();
 
     }
@@ -257,7 +262,7 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
             user.setNome(txtNome.getText());
             user.setTelefone(txtTelefone.getText());
             user.setCPF(txtCpf.getText());
-           // user.setSexo(String.valueOf(jComboSexo.getSelectedIndex()));
+            user.setSexo(String.valueOf(jComboSexo.getSelectedIndex()));
             user.setEmail(txtEmail.getText());
             user.setUser(txtUsuario.getText());
             user.setPass(txtSenha.getText());
@@ -266,7 +271,7 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
 
             if (!txtMatricula.getText().isEmpty() && !txtNome.getText().isEmpty()) {
                 userRN.salvar(user);
-                String mensagem = user.getId() == null ? "Usuário íncluído com sucesso!" : "Usuário alterado com sucesso!";
+                String mensagem = user.getId() == null ? "Usuário alterado com sucesso!" : "Usuário incluído com sucesso!";
                 JOptionPane.showMessageDialog(this, mensagem, "Cadastro Usuário - Sistema Biblioteca ROS", JOptionPane.INFORMATION_MESSAGE);
                 
                 //adicionou saio
