@@ -47,3 +47,4 @@ public class LivroRN {
     public Vector<Livro> pesquisar(String text)throws SQLException {
        return bd.pesquisar(text);
     }
+}

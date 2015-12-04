@@ -12,6 +12,7 @@ import java.util.Objects;
 public class Livro {
     
     
+    @Resolvable(colName = "Id do Livro")
     private Integer id;
     @Resolvable(colName = "Título")
     private String titulo;
@@ -224,7 +225,7 @@ public class Livro {
         return true;
     }
     public String toString() {
-        return "Livro{" + "titulo=" + titulo + ", autor=" + autor + ", ISBN=" + isbn + ", ano=" + ano + ", editora=" + editora + ", descricao=" + descricao + ", categoria=" + categoria.getNome() + '}';
+        return titulo;
     }
     
     
