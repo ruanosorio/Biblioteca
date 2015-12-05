@@ -19,6 +19,7 @@ import org.apache.log4j.Logger;
 /**
  *
  * @author Ruan Osorio
+ * @version 2.4
  */
 public class CategoriaBD {
 

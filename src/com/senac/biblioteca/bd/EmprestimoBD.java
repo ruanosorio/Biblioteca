@@ -25,6 +25,7 @@ import org.omg.PortableInterceptor.USER_EXCEPTION;
 /**
  *
  * @author Ruan Osorio
+ * @version 2.4
  */
 public class EmprestimoBD {
 
@@ -50,13 +51,13 @@ public class EmprestimoBD {
             pstm.setString(5, emprestimo.getIndDevolvido());
 
             pstm.executeUpdate();
-            log.info("Inserindo emprestimo no banco de dados");
+            log.info("Inserindo novo empréstimo no banco de dados");
             Long id = ConexaoBD.getLastKey(pstm);
             emprestimo.setId(id == null ? null : id.intValue());
 
             log.info("ID criado = " + emprestimo.getId());
         } catch (Exception e) {
-            log.error("Erro ao tentar inserir emprestimo!");
+            log.error("Erro ao tentar efetuar o empréstimo!");
             throw new RuntimeException(e);
         } finally {
             if (conn != null) {
@@ -85,7 +86,7 @@ public class EmprestimoBD {
             pstm.setInt(2, emprestimo.getId());
 
             pstm.executeUpdate();
-            log.info("Devolução inserida no banco de dados");
+            log.info("Devolução inserida corretamente.");
 
         } catch (Exception e) {
             log.error("Erro, ao tentar efetuar a devolução do livro!");
@@ -216,7 +217,7 @@ public class EmprestimoBD {
 
             conn = ConexaoBD.getConexao();
 
-            log.info("executando o select empréstimos");
+            log.info("Executando a busca dos empréstimos..");
             
             String sql = ""
                     + "SELECT"
@@ -281,6 +282,7 @@ public class EmprestimoBD {
                 lista.add(emp);
 
             }
+            log.info("Lista de empréstimos retornada.");
             System.out.println(lista);
             return lista;
 

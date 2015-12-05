@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.senac.biblioteca.swing;
 
 import com.senac.biblioteca.bean.Emprestimo;
@@ -15,11 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-//import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FileUtils;
 
 /**
  *
- * @author ruans
+ * @author Ruan Osorio
+ * @version 2.4
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -309,7 +305,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
                 saidaCSV.append("\r\n");
             }
-//            FileUtils.writeStringToFile(new File("relatorio.csv"), saidaCSV.toString());
+            FileUtils.writeStringToFile(new File("Relatorio_de_Emprestimos.csv"), saidaCSV.toString());
 
             JOptionPane.showMessageDialog(this, "Relatório gerado com sucesso!");
         } catch (Exception e) {

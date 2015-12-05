@@ -42,9 +42,10 @@ public class UsuarioBD {
             pstm.setString(7, p_usuario.getUser());
             pstm.setString(8, p_usuario.getPass());
 
-            log.info("Inserindo Usuário no banco de dados");
-            System.out.println(pstm);
+            log.info("Inserindo.. Usuário no banco de dados");
+//            System.out.println(pstm);
             pstm.executeUpdate();
+            
             Long id = ConexaoBD.getLastKey(pstm);
             p_usuario.setId(id == null ? null : id.intValue());
             
@@ -101,7 +102,7 @@ public class UsuarioBD {
             pstm.setInt(9, p_usuario.getId());
             
             
-            log.info("Usuario editado!");
+            log.info("Usuario editado com sucesso!");
 
             pstm.executeUpdate();
 
@@ -129,7 +130,7 @@ public class UsuarioBD {
             
             conn = ConexaoBD.getConexao();
 
-            log.info("executando o select usuários");
+            log.info("Executando a busca dos usuários..");
             
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM usuario");
             ResultSet rs = pstm.executeQuery();
@@ -150,7 +151,8 @@ public class UsuarioBD {
                 lista.add(usuarios);
 
             }
-            System.out.println(lista);
+ //           System.out.println(lista);
+            log.info("Lista de usuários encontrada.");
             return lista;
 
         } catch (Exception ex) {
@@ -173,6 +175,7 @@ public class UsuarioBD {
             pstm.setInt(1, p_usuario.getId());
 
             pstm.execute();
+            log.info("Usuario deletado com sucesso!");
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {

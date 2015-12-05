@@ -97,9 +97,10 @@ public class LivroBD {
 
             pstm.executeUpdate();
 
-            log.info("Livro editado!");
+            log.info("Livro editado com sucesso!");
 
         } catch (Exception e) {
+            log.error("Erro ao tentar editar o livro!");
             e.printStackTrace();
             throw new RuntimeException(e);
         } finally {
@@ -124,7 +125,7 @@ public class LivroBD {
 
             conn = ConexaoBD.getConexao();
 
-            log.info("Executando o select livro");
+            log.info("Efeutando a busca dos livros..");
 
             PreparedStatement pstm = conn.prepareStatement("SELECT * FROM livro");
             ResultSet rs = pstm.executeQuery();
@@ -149,7 +150,7 @@ public class LivroBD {
                 lista.add(livro);
 
             }
-
+            log.info("Lista de livros encontrada.");
             return lista;
 
         } catch (Exception ex) {
@@ -173,6 +174,7 @@ public class LivroBD {
             pstm.setInt(1, p_livro.getId());
 
             pstm.execute();
+            log.info("Livro deletado com sucesso!");
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
@@ -218,11 +220,11 @@ public class LivroBD {
                 book.setTitulo(rs.getString("titulo"));
                 book.setAutor("autor");
 
-                log.debug("Registro encontrado");
+                log.debug("Registro encontrado!");
 
                 dados.add(book);
             }
-            log.debug("Pesquisa executada com sucesso");
+            log.debug("Pesquisa executada com sucesso!");
             return dados;
         } catch (Exception ex) {
             throw new RuntimeException(ex);

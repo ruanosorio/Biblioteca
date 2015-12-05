@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author 631320290
+ * @author Ruan Osorio
+ * @version 2.4
  */
 public class CadastrarLivro extends javax.swing.JInternalFrame {
 
@@ -221,12 +222,12 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnExcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(btnCancelar)
                         .addGap(18, 18, 18)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanelDadosCadastrais, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 20, Short.MAX_VALUE))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,7 +239,7 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
                     .addComponent(btnCancelar)
                     .addComponent(btnSalvar)
                     .addComponent(btnExcluir))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -290,17 +291,21 @@ public class CadastrarLivro extends javax.swing.JInternalFrame {
         Livro book = new Livro();
         book.setId(id);
         if (book.getId() == null) {
-            JOptionPane.showMessageDialog(this, "Código deve ser informado");
+            JOptionPane.showMessageDialog(this, "O livro deve existir para excluir!");
         } else {
             if (JOptionPane.showConfirmDialog(this,
-                    "Deseja mesmo excluir este registro?") == JOptionPane.OK_OPTION) {
+                    "Deseja mesmo excluir este livro?") == JOptionPane.OK_OPTION) {
                 try {
                     LivroRN bookRN = new LivroRN();
                     bookRN.excluir(book);
-                    JOptionPane.showMessageDialog(this, "Registro excluído com sucesso!");
+                    JOptionPane.showMessageDialog(this, "Livro excluído com sucesso!");
+                    this.dispose();
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(this, e.getMessage());
                 }
+            }
+            if (gerenciarLivros != null) {
+                gerenciarLivros.populaTabela();
             }
         }
     }//GEN-LAST:event_btnExcluirActionPerformed

@@ -7,8 +7,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Ruan Osório
- * @version 1.3
+ * @author Ruan Osorio
+ * @version 2.4
  */
 public class CadastrarUsuario extends javax.swing.JInternalFrame {
 
@@ -68,6 +68,7 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
         txtSenha = new javax.swing.JPasswordField();
         txtUsuario = new javax.swing.JTextField();
         txtCpf = new javax.swing.JFormattedTextField();
+        btnExcluir = new javax.swing.JButton();
 
         setBorder(null);
         setClosable(true);
@@ -219,6 +220,13 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -227,7 +235,9 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(454, 454, 454)
+                        .addGap(363, 363, 363)
+                        .addComponent(btnExcluir)
+                        .addGap(18, 18, 18)
                         .addComponent(btnCancelar)
                         .addGap(18, 18, 18)
                         .addComponent(btnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
@@ -245,7 +255,8 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
-                    .addComponent(btnCancelar))
+                    .addComponent(btnCancelar)
+                    .addComponent(btnExcluir))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -296,9 +307,35 @@ public class CadastrarUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCpfActionPerformed
 
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+        Usuario user = new Usuario();
+        user.setId(id);
+        if (user.getId() == null) {
+            JOptionPane.showMessageDialog(this, "O usuário deve existir para excluir!");
+        } else {
+            if (JOptionPane.showConfirmDialog(this,
+                    "Deseja mesmo excluir este usuário?") == JOptionPane.OK_OPTION) {
+                try {
+                    UsuarioRN userRN = new UsuarioRN();
+                    userRN.excluir(user);
+                    JOptionPane.showMessageDialog(this, "Usuário excluído com sucesso!");
+                    this.dispose();
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage());
+                }
+            }
+            if (gerenciarUsuarios != null) {
+                gerenciarUsuarios.populaTabela();
+            }
+        }
+        
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox jComboSexo;
     private javax.swing.JLabel jLabel1;

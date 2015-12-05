@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.senac.biblioteca.swing;
 
 import java.awt.event.ActionEvent;
@@ -11,7 +6,8 @@ import com.senac.biblioteca.swing.TelaPrincipal;
 
 /**
  *
- * @author ruans
+ * @author Ruan Osorio
+ * @version 2.4
  */
 public class Login extends javax.swing.JFrame {
 

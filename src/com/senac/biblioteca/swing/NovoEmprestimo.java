@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.senac.biblioteca.swing;
 
 import com.senac.biblioteca.bd.EmprestimoBD;
@@ -19,6 +14,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Ruan Osorio
+ * @version 2.4
  */
 public class NovoEmprestimo extends javax.swing.JInternalFrame {
 
@@ -67,7 +63,7 @@ public class NovoEmprestimo extends javax.swing.JInternalFrame {
 
         jPanelPesquisa.setBorder(javax.swing.BorderFactory.createTitledBorder("Dados de Pesquisa"));
 
-        jLabel2.setText("Usuário:");
+        jLabel2.setText("Id Usuário:");
 
         lblLivro.setText("Id Livro:");
 
@@ -104,7 +100,7 @@ public class NovoEmprestimo extends javax.swing.JInternalFrame {
                 .addGroup(jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnPesquisarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
                     .addComponent(btnPesquisarLivro, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanelPesquisaLayout.setVerticalGroup(
             jPanelPesquisaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
